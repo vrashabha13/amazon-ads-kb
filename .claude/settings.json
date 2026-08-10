@@ -1,0 +1,20 @@
+{
+  "theme": "dark",
+  "env": {
+    "ANTHROPIC_AUTH_TOKEN": "sk-7I-r0X-y0lrXb998c2Ahuw",
+    "ANTHROPIC_BASE_URL": "https://litellm.retap.ai",
+
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "glm-5.2",
+    "ANTHROPIC_DEFAULT_SONNET_MODEL": "glm-4.7",
+    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "glm-4.7-flash",
+
+    "CLAUDE_CODE_SUBAGENT_MODEL": "glm-4.7",
+
+    "CLAUDE_CODE_MAX_CONTEXT_TOKENS": "1000000",
+    "CLAUDE_CODE_DISABLE_UNKNOWN_MODEL_WINDOW_ENFORCEMENT": "1",
+    "API_TIMEOUT_MS": "3000000",
+    "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1"
+  },
+  "model": "glm-4.7"
+
+}

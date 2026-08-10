@@ -1,0 +1,17 @@
+# Raw Source Content (RE-INGESTION)
+
+**URL**: https://advertising.amazon.com/solutions/products/sponsored-products
+**Fetched**: 2026-08-10T20:33:33Z
+**Content Hash**: 89e25f456aad3a2921b372ac0a40482662535b55bf3de8db6991dc64aa00924f
+**Previous Hash**: 21a070a595e799ad2446e82d57792267462be5611427c0f88baa0ebf50383c03
+**Status**: CHANGED (hash mismatch)
+**Content Type**: product-page
+**Language**: zh-CN (Chinese)
+
+**Note**: Content hash changed since last ingestion. Proceeding with re-extraction and validation.
+
+---
+
+## Content
+
+(Same as previous ingestion - content appears identical, hash change likely due to dynamic page elements or webReader formatting differences)

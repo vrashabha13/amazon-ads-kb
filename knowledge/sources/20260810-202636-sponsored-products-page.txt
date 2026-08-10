@@ -1,0 +1,136 @@
+# Raw Source Content
+
+**URL**: https://advertising.amazon.com/solutions/products/sponsored-products
+**Fetched**: 2026-08-10T20:26:36Z
+**Content Hash**: 21a070a595e799ad2446e82d57792267462be5611427c0f88baa0ebf50383c03
+**Content Type**: product-page
+**Language**: zh-CN (Chinese)
+
+---
+
+## Content
+
+![Image 1: 图标：一只手拿着一件商品](https://images-cn.ssl-images-amazon.cn/images/G/01/AdProductsWebsite/images/VisualRefresh/Iconography/lightBackgrounds/ad-products_sponsored-products_smile-orange_positive_white._TTW_.png)
+
+## 商品推广
+
+## 在关键时刻展示您的商品
+
+商品推广是采用单次点击成本 (CPC) 定价模式的广告，用于在亚马逊站内以及精选的优质应用程序和网站上推广单件商品。即使您没有任何推广经验，也可以在短短几分钟内使用图片或视频创建广告活动。
+
+### 启动商品推广并支出一定金额，即可获得价值高达 1000 美元*的广告折扣券。
+
+新卖家**启动首个商品推广活动并在启动后 30 天内支出一定金额，即可获得价值高达 $1000 的广告折扣券。仅在部分站点提供。
+
+*广告折扣券对应的价值可能因站点而异。
+**符合以下条件的专业销售计划卖家：过去 90 天内在符合条件的亚马逊站点发布了首个可购买 ASIN。应遵守适用的条款和条件。
+
+![Image 2](https://images-cn.ssl-images-amazon.cn/images/G/01/AdProductsWebsite/images/pageElements/legoDemos/illustrations/5colors1X2/Goals_Increase-Sales--Conversions_3-color_Orange-Pink-Green._BL10_FMwebp_._TTW_.png)
+
+![Image 3: 插图：带有代表在线通信的图标的笔记本电脑，包括视频、个人资料和扩音器。](https://images-cn.ssl-images-amazon.cn/images/G/01/AdProductsWebsite/images/VisualRefresh/Illustration/Three-Color/Brand_Expansive-touchpoints_3-color_Orange-Pink-Green._BL10_FMwebp_._TTW_.png)
+
+## 商品推广如何运作？
+
+您可以自主选择要推广的商品及要投放的关键词，也可以交由亚马逊系统自动投放相关的关键词。您可以掌控要在竞价和预算上投入的费用，还可以衡量广告效果。广告以图片形式展示，或者与新的商品推广视频一起以互动式长视频的形式展示。广告在电脑端和移动端浏览器以及亚马逊移动应用程序上投放。顾客点击您的广告后，就会进入您推广的商品的详情页。
+
+## 为什么要使用商品推广？
+
+商品推广可帮助您在亚马逊站内以及精选的优质应用程序和网站上推广您的商品、提高销售额并提升商品可见度。这是一种经济实惠且以洞察为导向的解决方案，无论是新手广告主还是经验丰富的广告主，都可以灵活地进行广告的规划、投放及优化。
+
+![Image 4: 插图：两人在配有幕布的舞台背景前展示上升趋势图表](https://images-cn.ssl-images-amazon.cn/images/G/01/AdProductsWebsite/images/VisualRefresh/Illustration/Three-Color/Marketing-Scenarios_Presentation-to-Colleagues_3-color_Orange-Pink-Green._BL10_FMwebp_._TTW_.png)
+
+## 商品推广广告位
+
+## 商品推广广告展示在哪里？
+
+广告展示在亚马逊站内及站外，亚马逊站外包括其他亚马逊自有自营网站以及第三方网站，支持桌面设备、移动设备、平板电脑等各类设备上的浏览器和应用程序体验。
+
+![Image 5](https://images-cn.ssl-images-amazon.cn/images/G/01/AdProductsWebsite/images/VisualRefresh/AdProducts/598x598_SponProd_2_Transparent._SL100_FMwebp_._TTW_.png)
+
+### 亚马逊站内
+
+在亚马逊站内，您的广告可能会展示在购物搜索结果顶部、旁边或中间以及商品页面上。
+
+![Image 6](https://images-cn.ssl-images-amazon.cn/images/G/01/AdProductsWebsite/images/VisualRefresh/AdProducts/598x598_SponProd_1_Transparent._SL100_FMwebp_._TTW_.png)
+
+### 亚马逊站外
+
+亚马逊站外包括其他亚马逊自有自营网站以及第三方网站，支持桌面设备、移动设备、平板电脑等各类设备上的浏览器和应用程序体验。
+
+![Image 7: 图标：点击几下即可推动销售增长](https://images-cn.ssl-images-amazon.cn/images/G/01/AdProductsWebsite/images/VisualRefresh/Iconography/lightBackgrounds/marketing-outcomes_increase-sales--conversion_teal_positive_white._SL100_FMwebp_._TTW_.png)
+
+### 点击几下即可推动销售增长
+
+商品推广能够直接将顾客引导至商品详情页，让顾客只需点击一两下即可轻松浏览或购买商品，从而助力提升各个商品的销售额。
+
+![Image 8: "灯泡"图标](https://images-cn.ssl-images-amazon.cn/images/G/01/AdProductsWebsite/images/VisualRefresh/Iconography/lightBackgrounds/marketing-terminology_creative_red_positive_white._SL100_FMwebp_._TTW_.png)
+
+### 激励顾客做出明智购买决策
+
+仅在您推广的商品有货时显示，并使用图片和视频展示多项产品功能，帮助顾客做出明智的浏览和购买决策
+
+![Image 9: 图标：用心与消费者互动](https://images-cn.ssl-images-amazon.cn/images/G/01/AdProductsWebsite/images/VisualRefresh/Iconography/lightBackgrounds/media-consumption_social-media_blue_positive_white._SL100_FMwebp_._TTW_.png)
+
+### 通过传递相关信息来触达消费者
+
+从灵活的关键词投放和商品投放选项中进行选择并应用建议方案，以在合适的时间触达相关顾客。
+
+![Image 10: 图标：条形图和折线图](https://images-cn.ssl-images-amazon.cn/images/G/01/AdProductsWebsite/images/VisualRefresh/Iconology/lightBackgrounds/product-groupings_measurement--analytics_purple_positive_white._SL100_FMwebp_._TTW_.png)
+
+### 利用更明智的洞察进行优化
+
+掌控广告效果，设置预算，选择竞价，仅为点击量付费，并利用切实可行的广告活动报告洞察来优化广告活动。
+
+## 最新资讯
+
+### 利用商品推广视频展示商品的实际使用场景
+
+在关键时刻突出相关产品功能，将浏览者转化为充满信心的购买者。与未使用视频的广告活动相比，包含视频的商品推广活动的点击率 (CTR) 平均提升了 9%。1
+
+![Image 11](https://images-cn.ssl-images-amazon.cn/images/G/01/AdProductsWebsite/images/VisualRefresh/Iconology/darkBackgrounds/marketing-terminology_brand-lift_smile-orange_negative_transparent_-_Copy._SL100_FMwebp_._TTW_.png)
+
+## 如何创建商品推广活动？
+
+### 1
+
+### 2
+
+登录您的账户，点击"创建广告活动"，然后选择"商品推广"。
+
+### 5
+
+选择相关设置： 为广告活动命名，确定开始日期和结束日期，并输入每日预算。
+
+![Image 12: 一个人拿着放大镜](https://images-cn.ssl-images-amazon.cn/images/G/01/AdProductsWebsite/images/VisualRefresh/Illustration/Single-Color/Marketing-Scenarios_Data-Analysis_1-color_Orange._SL100_FMwebp_._TTW_.png)
+
+## 常见 问题解答
+
+商品推广适用于专业卖家、供应商、图书供应商、Kindle 自助出版 (KDP) 作者和服务商。推广的商品必须属于一个或多个符合条件的品类且符合首选商品的条件。
+
+欧洲
+
+- BE
+- DE
+- ES
+- FR
+- IE
+- IT
+- NL
+- PL
+- SE
+- TR
+- UK
+
+亚马逊提供一系列工具和报告，帮助您优化广告活动效果并衡量成效。在您启动广告活动之后，便可生成报告，进而深入了解推广的商品或投放所产生的销售额及效果，以及不同广告位的效果差异等。您可以使用这些广告分析来为您的业务确定成功的方案，并帮助优化您的广告活动。
+
+目前，成人用品、二手商品、翻新商品和已关闭品类中的商品不符合推广条件。请查看品牌推广和商品推广的广告素材接受政策，以获取允许推广和禁止推广品类的完整列表。
+
+创建广告活动时，广告主需要对希望投放的关键词输入竞价。竞价是指您在顾客点击广告时愿意支付的最高金额。
+
+对于商品推广，您需要为广告活动设置每日预算。每日预算是指您愿意在一个日历月内的每一天为广告活动支出的金额。例如，如果您将每日预算设为 $100，则您最多可以在该日历月内（假设一整月共有 31 天）获得价值 $3,100 的点击量。每日预算在一天中的消耗速度并非固定不变。这意味着，如果大量顾客对您推广的商品感兴趣，而您的每日预算设置较低，那么这笔预算可能在短短几分钟内就会被消耗殆尽。
+
+但是您可以掌控您希望支出的总金额，最终成本始终不会超过您针对广告活动持续时间设置的金额。广告投放后，您可以增加或减少每日预算。
+
+## 数据来源
+
+- 1 亚马逊研究，美国，2025 年 8 月至 10 月

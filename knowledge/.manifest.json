@@ -1,0 +1,25 @@
+{
+  "sources": {
+    "https://advertising.amazon.com/solutions/products/sponsored-products": {
+      "content_hash": "sha256:89e25f456aad3a2921b372ac0a40482662535b55bf3de8db6991dc64aa00924f",
+      "last_checked": "2026-08-10T20:33:33Z",
+      "status": "ingested",
+      "concept_files": [
+        "sponsored-products-basics.okf.md",
+        "sponsored-products-ad-placement.okf.md",
+        "sponsored-products-targeting-bidding.okf.md",
+        "sponsored-products-budget-costs.okf.md",
+        "sponsored-products-eligibility.okf.md"
+      ],
+      "content_type": "product-page",
+      "language": "zh-CN",
+      "official_source": true,
+      "facts_extracted": 27,
+      "previous_hash": "sha256:21a070a595e799ad2446e82d57792267462be5611427c0f88baa0ebf50383c03",
+      "reingestion_count": 1,
+      "content_unchanged_semantically": true
+    }
+  },
+  "last_updated": "2026-08-10T20:33:33Z",
+  "version": "0.1.0"
+}

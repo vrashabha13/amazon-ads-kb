@@ -1,0 +1,218 @@
+{
+  "facts": [
+    {
+      "statement": "Sponsored Products (商品推广) use a cost-per-click (CPC) pricing model",
+      "confidence": "high",
+      "source_url": "https://advertising.amazon.com/solutions/products/sponsored-products",
+      "source_excerpt": "商品推广是采用单次点击成本 (CPC) 定价模式的广告",
+      "content_type": "product-page",
+      "extraction_timestamp": "2026-08-10T20:26:36Z"
+    },
+    {
+      "statement": "Sponsored Products ads appear in Amazon search results and product detail pages",
+      "confidence": "high",
+      "source_url": "https://advertising.amazon.com/solutions/products/sponsored-products",
+      "source_excerpt": "商品推广在线广告会出现在亚马逊搜索结果和商品详情页中",
+      "content_type": "product-page",
+      "extraction_timestamp": "2026-08-10T20:26:36Z"
+    },
+    {
+      "statement": "Sponsored Products campaigns can be created using images or videos in minutes",
+      "confidence": "high",
+      "source_url": "https://advertising.amazon.com/solutions/products/sponsored-products",
+      "source_excerpt": "即使您没有任何推广经验，也可以在短短几分钟内使用图片或视频创建广告活动",
+      "content_type": "product-page",
+      "extraction_timestamp": "2026-08-10T20:26:36Z"
+    },
+    {
+      "statement": "New sellers can receive advertising credits up to $1000 when launching first Sponsored Products campaign",
+      "confidence": "high",
+      "source_url": "https://advertising.amazon.com/solutions/products/sponsored-products",
+      "source_excerpt": "新卖家**启动首个商品推广活动并在启动后 30 天内支出一定金额，即可获得价值高达 $1000 的广告折扣券",
+      "content_type": "product-page",
+      "extraction_timestamp": "2026-08-10T20:26:36Z"
+    },
+    {
+      "statement": "Sponsored Products support manual keyword/product selection or automatic targeting",
+      "confidence": "high",
+      "source_url": "https://advertising.amazon.com/solutions/products/sponsored-products",
+      "source_excerpt": "您可以自主选择要推广的商品及要投放的关键词，也可以交由亚马逊系统自动投放相关的关键词",
+      "content_type": "product-page",
+      "extraction_timestamp": "2026-08-10T20:26:36Z"
+    },
+    {
+      "statement": "Advertisers control bid amounts and daily budgets for Sponsored Products",
+      "confidence": "high",
+      "source_url": "https://advertising.amazon.com/solutions/products/sponsored-products",
+      "source_excerpt": "您可以掌控要在竞价和预算上投入的费用",
+      "content_type": "product-page",
+      "extraction_timestamp": "2026-08-10T20:26:36Z"
+    },
+    {
+      "statement": "Sponsored Products ads display as images or interactive long-form videos",
+      "confidence": "high",
+      "source_url": "https://advertising.amazon.com/solutions/products/sponsored-products",
+      "source_excerpt": "广告以图片形式展示，或者与新的商品推广视频一起以互动式长视频的形式展示",
+      "content_type": "product-page",
+      "extraction_timestamp": "2026-08-10T20:26:36Z"
+    },
+    {
+      "statement": "Sponsored Products ads appear on desktop, mobile browsers, and Amazon mobile apps",
+      "confidence": "high",
+      "source_url": "https://advertising.amazon.com/solutions/products/sponsored-products",
+      "source_excerpt": "广告在电脑端和移动端浏览器以及亚马逊移动应用程序上投放",
+      "content_type": "product-page",
+      "extraction_timestamp": "2026-08-10T20:26:36Z"
+    },
+    {
+      "statement": "Customers clicking Sponsored Products ads are directed to the product detail page",
+      "confidence": "high",
+      "source_url": "https://advertising.amazon.com/solutions/products/sponsored-products",
+      "source_excerpt": "顾客点击您的广告后，就会进入您推广的商品的详情页",
+      "content_type": "product-page",
+      "extraction_timestamp": "2026-08-10T20:26:36Z"
+    },
+    {
+      "statement": "Sponsored Products ads appear at top, beside, or middle of shopping search results",
+      "confidence": "high",
+      "source_url": "https://advertising.amazon.com/solutions/products/sponsored-products",
+      "source_excerpt": "在亚马逊站内，您的广告可能会展示在购物搜索结果顶部、旁边或中间以及商品页面上",
+      "content_type": "product-page",
+      "extraction_timestamp": "2026-08-10T20:26:36Z"
+    },
+    {
+      "statement": "Sponsored Products ads appear off-Amazon on other Amazon-owned sites and third-party websites",
+      "confidence": "high",
+      "source_url": "https://advertising.amazon.com/solutions/products/sponsored-products",
+      "source_excerpt": "亚马逊站外包括其他亚马逊自有自营网站以及第三方网站",
+      "content_type": "product-page",
+      "extraction_timestamp": "2026-08-10T20:26:36Z"
+    },
+    {
+      "statement": "Sponsored Products only show when promoted products are in stock",
+      "confidence": "high",
+      "source_url": "https://advertising.amazon.com/solutions/products/sponsored-products",
+      "source_excerpt": "仅在您推广的商品有货时显示",
+      "content_type": "product-page",
+      "extraction_timestamp": "2026-08-10T20:26:36Z"
+    },
+    {
+      "statement": "Sponsored Products support keyword targeting and product targeting options",
+      "confidence": "high",
+      "source_url": "https://advertising.amazon.com/solutions/products/sponsored-products",
+      "source_excerpt": "从灵活的关键词投放和商品投放选项中进行选择",
+      "content_type": "product-page",
+      "extraction_timestamp": "2026-08-10T20:26:36Z"
+    },
+    {
+      "statement": "Sponsored Products campaigns only charge for clicks (pay-per-click)",
+      "confidence": "high",
+      "source_url": "https://advertising.amazon.com/solutions/products/sponsored-products",
+      "source_excerpt": "仅为点击量付费",
+      "content_type": "product-page",
+      "extraction_timestamp": "2026-08-10T20:26:36Z"
+    },
+    {
+      "statement": "Sponsored Products with video have 9% higher average CTR compared to campaigns without video",
+      "confidence": "high",
+      "source_url": "https://advertising.amazon.com/solutions/products/sponsored-products",
+      "source_excerpt": "与未使用视频的广告活动相比，包含视频的商品推广活动的点击率 (CTR) 平均提升了 9%",
+      "content_type": "product-page",
+      "extraction_timestamp": "2026-08-10T20:26:36Z"
+    },
+    {
+      "statement": "Sponsored Products are available for professional sellers, vendors, book vendors, KDP authors, and service providers",
+      "confidence": "high",
+      "source_url": "https://advertising.amazon.com/solutions/products/sponsored-products",
+      "source_excerpt": "商品推广适用于专业卖家、供应商、图书供应商、Kindle 自助出版 (KDP) 作者和服务商",
+      "content_type": "product-page",
+      "extraction_timestamp": "2026-08-10T20:26:36Z"
+    },
+    {
+      "statement": "Promoted products must belong to eligible categories and meet preferred product criteria",
+      "confidence": "high",
+      "source_url": "https://advertising.amazon.com/solutions/products/sponsored-products",
+      "source_excerpt": "推广的商品必须属于一个或多个符合条件的品类且符合首选商品的条件",
+      "content_type": "product-page",
+      "extraction_timestamp": "2026-08-10T20:26:36Z"
+    },
+    {
+      "statement": "Sponsored Products is available in multiple European countries: BE, DE, ES, FR, IE, IT, NL, PL, SE, TR, UK",
+      "confidence": "high",
+      "source_url": "https://advertising.amazon.com/solutions/products/sponsored-products",
+      "source_excerpt": "欧洲: BE, DE, ES, FR, IE, IT, NL, PL, SE, TR, UK",
+      "content_type": "product-page",
+      "extraction_timestamp": "2026-08-10T20:26:36Z"
+    },
+    {
+      "statement": "Adult products, used goods, refurbished goods, and closed categories are ineligible for Sponsored Products",
+      "confidence": "high",
+      "source_url": "https://advertising.amazon.com/solutions/products/sponsored-products",
+      "source_excerpt": "目前，成人用品、二手商品、翻新商品和已关闭品类中的商品不符合推广条件",
+      "content_type": "product-page",
+      "extraction_timestamp": "2026-08-10T20:26:36Z"
+    },
+    {
+      "statement": "Sponsored Products requires setting bids for keywords (maximum amount willing to pay per click)",
+      "confidence": "high",
+      "source_url": "https://advertising.amazon.com/solutions/products/sponsored-products",
+      "source_excerpt": "创建广告活动时，广告主需要对希望投放的关键词输入竞价。竞价是指您在顾客点击广告时愿意支付的最高金额",
+      "content_type": "product-page",
+      "extraction_timestamp": "2026-08-10T20:26:36Z"
+    },
+    {
+      "statement": "Sponsored Products requires setting daily budget (amount willing to spend per calendar day)",
+      "confidence": "high",
+      "source_url": "https://advertising.amazon.com/solutions/products/sponsored-products",
+      "source_excerpt": "对于商品推广，您需要为广告活动设置每日预算。每日预算是指您愿意在一个日历月内的每一天为广告活动支出的金额",
+      "content_type": "product-page",
+      "extraction_timestamp": "2026-08-10T20:26:36Z"
+    },
+    {
+      "statement": "Example: $100 daily budget × 31 days = $3,100 maximum monthly spend",
+      "confidence": "high",
+      "source_url": "https://advertising.amazon.com/solutions/products/sponsored-products",
+      "source_excerpt": "如果您将每日预算设为 $100，则您最多可以在该日历月内（假设一整月共有 31 天）获得价值 $3,100 的点击量",
+      "content_type": "product-page",
+      "extraction_timestamp": "2026-08-10T20:26:36Z"
+    },
+    {
+      "statement": "Daily budget consumption rate varies based on customer interest",
+      "confidence": "high",
+      "source_url": "https://advertising.amazon.com/solutions/products/sponsored-products",
+      "source_excerpt": "每日预算在一天中的消耗速度并非固定不变",
+      "content_type": "product-page",
+      "extraction_timestamp": "2026-08-10T20:26:36Z"
+    },
+    {
+      "statement": "Daily budget can be exhausted quickly if many customers are interested and budget is set low",
+      "confidence": "high",
+      "source_url": "https://advertising.amazon.com/solutions/products/sponsored-products",
+      "source_excerpt": "如果大量顾客对您推广的商品感兴趣，而您的每日预算设置较低，那么这笔预算可能在短短几分钟内就会被消耗殆尽",
+      "content_type": "product-page",
+      "extraction_timestamp": "2026-08-10T20:26:36Z"
+    },
+    {
+      "statement": "Total campaign cost will not exceed the set budget for campaign duration",
+      "confidence": "high",
+      "source_url": "https://advertising.amazon.com/solutions/products/sponsored-products",
+      "source_excerpt": "最终成本始终不会超过您针对广告活动持续时间设置的金额",
+      "content_type": "product-page",
+      "extraction_timestamp": "2026-08-10T20:26:36Z"
+    },
+    {
+      "statement": "Daily budget can be increased or decreased after campaign launch",
+      "confidence": "high",
+      "source_url": "https://advertising.amazon.com/solutions/products/sponsored-products",
+      "source_excerpt": "广告投放后，您可以增加或减少每日预算",
+      "content_type": "product-page",
+      "extraction_timestamp": "2026-08-10T20:26:36Z"
+    }
+  ],
+  "source_metadata": {
+    "url": "https://advertising.amazon.com/solutions/products/sponsored-products",
+    "content_type": "product-page",
+    "official_source": true,
+    "total_facts": 27
+  }
+}
