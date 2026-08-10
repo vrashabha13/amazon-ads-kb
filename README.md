@@ -14,7 +14,7 @@ An autonomous knowledge acquisition system for Amazon Ads content. Discovers fac
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/amazon-ads-kb.git
+git clone https://github.com/vrashabha13/amazon-ads-kb.git
 cd amazon-ads-kb
 
 # The repository is ready to use!
