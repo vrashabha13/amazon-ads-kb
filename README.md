@@ -21,6 +21,23 @@ cd amazon-ads-kb
 # Claude Code automatically loads .claude/ configuration
 ```
 
+### 🔒 Security Setup
+
+**IMPORTANT**: This repository uses Claude Code which requires API credentials. Never commit API keys!
+
+```bash
+# Copy the example settings file
+cp .claude/settings.example.json .claude/settings.json
+
+# Edit and add your own API credentials
+# IMPORTANT: .claude/settings.json is in .gitignore and will NOT be committed
+nano .claude/settings.json
+```
+
+**What gets committed**:
+- ✅ `.claude/settings.example.json` (template, no credentials)
+- ❌ `.claude/settings.json` (your credentials, excluded by .gitignore)
+
 ### Usage
 
 #### Ingest a URL

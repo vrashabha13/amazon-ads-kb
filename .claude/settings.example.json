@@ -1,0 +1,18 @@
+{
+  "_comment": "This is a template file. Rename to settings.json and add your own values.",
+  "_warning": "NEVER commit settings.json with real API keys or tokens!",
+  "theme": "dark",
+  "env": {
+    "_comment_env": "Add your API credentials here",
+    "ANTHROPIC_AUTH_TOKEN": "your-api-token-here",
+    "ANTHROPIC_BASE_URL": "https://api.anthropic.com",
+
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "claude-opus-5",
+    "ANTHROPIC_DEFAULT_SONNET_MODEL": "claude-sonnet-5",
+    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "claude-haiku-4-5-20251001",
+
+    "CLAUDE_CODE_SUBAGENT_MODEL": "claude-sonnet-5",
+    "CLAUDE_CODE_MAX_CONTEXT_TOKENS": "200000"
+  },
+  "model": "claude-sonnet-5"
+}
