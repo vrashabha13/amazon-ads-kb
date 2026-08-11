@@ -147,3 +147,37 @@ Current limits and quotas for Amazon Sponsored Products campaigns.
 - On 2026-08-11, the source documentation was updated to increase the maximum products per ad from 10 to 50
 - Historical data preserved in fact_history frontmatter field
 ```
+
+## Canonical Required Fields Definition
+
+This is the single source of truth for required OKF frontmatter fields. All validation logic and documentation should reference this definition.
+
+**JavaScript representation:**
+```javascript
+// Canonical required fields from OKF v0.1 spec + project extensions
+const REQUIRED_FIELDS = [
+  // OKF v0.1 Core Fields (6)
+  'type',
+  'title',
+  'description',
+  'resource',
+  'tags',
+  'timestamp',
+
+  // Project Extensions (4)
+  'confidence',
+  'sources_count',
+  'official_source',
+  'last_checked'
+];
+```
+
+**Total: 10 required fields**
+
+This list is used by:
+- `.claude/hooks/validate-okf-frontmatter.js` - Validation hook
+- `.claude/skills/okf-formatter.md` - Agent instructions (this file)
+- `.claude/agents/publisher.md` - Publishing agent
+- `.claude/agents/extractor.md` - Extraction agent
+
+Any changes to required fields must be updated in all locations to maintain consistency.

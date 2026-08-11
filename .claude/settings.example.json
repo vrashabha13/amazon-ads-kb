@@ -14,5 +14,23 @@
     "CLAUDE_CODE_SUBAGENT_MODEL": "claude-sonnet-5",
     "CLAUDE_CODE_MAX_CONTEXT_TOKENS": "200000"
   },
-  "model": "claude-sonnet-5"
+  "model": "claude-sonnet-5",
+  "_hooks_comment": "Validation hooks for OKF frontmatter enforcement",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node",
+            "args": ["${CLAUDE_PROJECT_DIR}/.claude/hooks/validate-okf-frontmatter.js"],
+            "env": {
+              "CLAUDE_PROJECT_DIR": "${CLAUDE_PROJECT_DIR}"
+            }
+          }
+        ]
+      }
+    ]
+  }
 }
