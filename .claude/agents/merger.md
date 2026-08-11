@@ -51,25 +51,53 @@ Follow dedup-merge skill priority:
 2. Higher confidence > lower confidence
 3. Two official sources contradict → flag for manual review
 
-### Step 4: Merge Fact Sets
+### Step 4: Handle Source Changes (NEW)
+Process Validator's source change detection:
+
+#### 4a. Remove Obsolete Facts
+For each fact in `facts_to_remove`:
+1. Locate the fact in its concept file (by `fact_id` or statement)
+2. Remove the fact from the concept's fact list
+3. Add to `deprecated_facts` in frontmatter for tracking
+4. Document removal in notes with reason and timestamp
+
+#### 4b. Update Superseded Facts
+For each entry in `supersedes` map:
+1. Locate old fact (value) in its concept file
+2. Replace with new fact (key)
+3. Add to `fact_history` in frontmatter showing lineage
+4. Document update in notes with old and new values
+
+#### 4c. Add New Facts
+For each fact with `status: "new"`:
+- Add to concept's fact list (existing behavior)
+
+#### 4d. Handle Updated Facts
+For each fact with `status: "update"`:
+- Replace the superseded fact with the new version
+- Track both in `fact_history`
+
+### Step 5: Merge Fact Sets
 - Union all facts from both concepts
 - Keep highest confidence per fact
 - Target: 5-10 related facts per concept
 - If >15 facts → consider splitting
 
-### Step 5: Update Frontmatter
+### Step 6: Update Frontmatter
 Follow okf-formatter skill:
 - Combine tags (union, sort alphabetically)
 - Update `sources_count` (count distinct sources)
 - Update `last_checked` to current timestamp
 - Add `merge_notes` if any conflicts flagged
+- Add `deprecated_facts` list if any facts removed
+- Add `fact_history` object if any facts updated
 
-### Step 6: Write Document
+### Step 7: Write Document
 Follow okf-formatter skill structure:
 - Overview
-- Facts (numbered list)
+- Facts (numbered list, with current facts only)
 - Sources (citations)
-- Notes (merge notes, conflicts)
+- Notes (merge notes, conflicts, updates, removals)
 
 ## Output Format
 
@@ -79,9 +107,38 @@ Follow okf-formatter skill structure:
   "status": "merged",
   "concept_file": "sponsored-products-bidding.okf.md",
   "facts_merged": 7,
+  "facts_removed": 1,
+  "facts_updated": 2,
   "sources_cited": 2,
   "conflicts_flagged": 0,
   "notes": "Successfully merged 2 sources"
+}
+```
+
+### Source Updated (Facts Changed)
+```json
+{
+  "status": "updated",
+  "concept_file": "sponsored-products-limits.okf.md",
+  "facts_added": 3,
+  "facts_removed": 1,
+  "facts_updated": 2,
+  "deprecated_facts": [
+    {
+      "fact_id": "fact-old123-old456",
+      "statement": "Maximum 10 products per ad",
+      "removed_at": "2026-08-11T00:00:00Z",
+      "reason": "Source updated, value changed to 50"
+    }
+  ],
+  "fact_history": {
+    "fact-new50-new51": {
+      "current_statement": "Maximum 50 products per ad",
+      "supersedes": "fact-old123-old456",
+      "previous_statement": "Maximum 10 products per ad",
+      "updated_at": "2026-08-11T00:00:00Z"
+    }
+  }
 }
 ```
 

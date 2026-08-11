@@ -52,6 +52,8 @@ Follow provenance skill:
     "new_facts": 12,
     "duplicates": 2,
     "conflicts": 1,
+    "updated_facts": 3,
+    "removed_facts": 1,
     "warnings": []
   },
   "fact_analysis": [
@@ -60,20 +62,43 @@ Follow provenance skill:
       "status": "new",
       "similar_existing": [],
       "recommended_confidence": "high",
-      "recommended_tags": ["products/sponsored-products/targeting"]
+      "recommended_tags": ["products/sponsored-products/targeting"],
+      "fact_id": "fact-abc123-def456"
     },
     {
       "statement": "Sponsored Products do not support video ads",
       "status": "conflict",
       "conflicts_with": "sponsored-products-basics.okf.md",
       "conflicting_statement": "Sponsored Products support video creative",
-      "resolution": "manual_review"
+      "resolution": "manual_review",
+      "fact_id": "fact-xyz789-uvw012"
+    },
+    {
+      "statement": "Sponsored Products support up to 50 products per ad",
+      "status": "update",
+      "supersedes": "fact-old123-old456",
+      "previous_statement": "Sponsored Products support up to 10 products per ad",
+      "fact_id": "fact-new50-new51",
+      "reason": "Same source updated the value from 10 to 50"
     }
   ],
+  "facts_to_remove": [
+    {
+      "fact_id": "fact-old123-old456",
+      "statement": "Sponsored Products support up to 10 products per ad",
+      "reason": "Source updated, fact no longer present",
+      "concept_file": "sponsored-products-limits.okf.md"
+    }
+  ],
+  "supersedes": {
+    "fact-new50-new51": "fact-old123-old456"
+  },
   "recommendations": [
     "Proceed with 12 new facts",
     "Skip 2 duplicates",
-    "Flag 1 conflict for manual review"
+    "Flag 1 conflict for manual review",
+    "Update 3 existing facts",
+    "Remove 1 obsolete fact"
   ]
 }
 ```
@@ -108,6 +133,99 @@ Follow provenance skill:
 - Old fact may have been true but is now outdated
 - Flag as low confidence
 - Add note: "May be outdated — verify against current docs"
+
+---
+
+## Source Change Detection (NEW)
+
+When a source URL has been previously ingested (check manifest), you must detect changes:
+
+### Detect Supersedence (Value Updates)
+
+When the same source provides different information for the same concept:
+
+1. **Identify the concept**: Find which existing concepts mention this source URL
+2. **Compare facts**: For each fact from this source in existing concepts, check if new content contradicts or updates it
+3. **Classify as update** when:
+   - Same topic/entity but different value
+   - Example: Old "Maximum 10 products" vs New "Maximum 50 products"
+   - Same source URL (proving it's an update, not a conflict)
+
+4. **Output format**:
+   ```json
+   {
+     "statement": "Sponsored Products support up to 50 products per ad",
+     "status": "update",
+     "supersedes": "fact-old123-old456",
+     "previous_statement": "Sponsored Products support up to 10 products per ad",
+     "fact_id": "fact-new50-new51",
+     "reason": "Same source updated the value"
+   }
+   ```
+
+### Detect Removed Facts
+
+When the same source no longer contains information that was previously present:
+
+1. **Identify missing facts**: Facts from this source URL that don't appear in new content
+2. **Check for removal**: The concept/fact is genuinely gone from source (not just reworded)
+3. **Classify as removal** when:
+   - Fact was present in previous version of this source
+   - Fact is NOT present in new version
+   - Same source URL (proving it's a removal, not a conflict)
+
+4. **Output format**:
+   ```json
+   {
+     "facts_to_remove": [
+       {
+         "fact_id": "fact-old123-old456",
+         "statement": "Sponsored Products support up to 10 products per ad",
+         "reason": "Source updated, fact no longer present",
+         "concept_file": "sponsored-products-limits.okf.md"
+       }
+     ]
+   }
+   ```
+
+### Fact ID System
+
+Generate stable fact IDs for tracking:
+
+```
+fact-{source_short_hash}-{statement_short_hash}
+```
+
+Example:
+- Source URL hash: `sha256:abc123...` → `abc123`
+- Statement hash: "Maximum 10 products" → `def456`
+- Fact ID: `fact-abc123-def456`
+
+This allows tracking the same fact across source versions.
+
+---
+
+## Output Fields for Source Changes
+
+In addition to `new_facts`, `duplicates`, and `conflicts`, you must output:
+
+### `updated_facts` (count)
+Number of facts that supersede existing facts
+
+### `removed_facts` (count)
+Number of facts to delete from concepts
+
+### `facts_to_remove` (array)
+List of fact IDs to remove with metadata:
+- `fact_id`: The ID of the fact to remove
+- `statement`: The fact statement (for documentation)
+- `reason`: Why this fact is being removed
+- `concept_file`: Which concept file contains this fact
+
+### `supersedes` (object)
+Map of {new_fact_id: old_fact_id} showing which facts replace which:
+- Key: New fact ID
+- Value: Old fact ID being replaced
 
 ## Determining Related Concepts
 
