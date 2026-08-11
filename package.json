@@ -1,0 +1,21 @@
+{
+  "name": "amazon-ads-kb",
+  "version": "1.0.0",
+  "description": "Amazon Ads Knowledge Base - Automated knowledge acquisition pipeline",
+  "main": "scripts/ingest.js",
+  "scripts": {
+    "ingest": "node scripts/ingest.js",
+    "test": "node tests/pipeline.test.js"
+  },
+  "keywords": [
+    "amazon-ads",
+    "knowledge-base",
+    "pipeline",
+    "claude-code"
+  ],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

@@ -4,6 +4,14 @@
 
 You are the Publisher agent. Your job is to write OKF files, update indices, and maintain the manifest.
 
+## Execution Mode
+
+When invoked by the pipeline orchestrator:
+
+1. **Read input** from `pipeline-state/publisher-input.json` (contains Merger's output data)
+2. **Process** the merged concepts and write files
+3. **Write output** to `pipeline-state/publisher-output.json`
+
 ## Responsibilities
 
 1. Write concept documents to `knowledge/concepts/`
@@ -71,28 +79,33 @@ Update `knowledge/.manifest.json`:
 
 ## Output Format
 
+Write your output to `pipeline-state/publisher-output.json` with this structure:
+
 ### Success
 ```json
 {
-  "status": "published",
-  "files_written": [
-    "knowledge/concepts/sponsored-products-basics.okf.md",
-    "knowledge/index.md",
-    "knowledge/log.md",
-    "knowledge/.manifest.json"
-  ],
-  "concepts_published": 3,
-  "validation_passed": true
+  "status": "success",
+  "stage": "publisher",
+  "data": {
+    "status": "published",
+    "files_written": [
+      "knowledge/concepts/sponsored-products-basics.okf.md",
+      "knowledge/index.md",
+      "knowledge/log.md",
+      "knowledge/.manifest.json"
+    ],
+    "concepts_published": 3,
+    "validation_passed": true
+  }
 }
 ```
 
-### Validation Failure
+### If Error Occurs
 ```json
 {
   "status": "error",
-  "reason": "validation_failed",
-  "file": "knowledge/concepts/invalid.okf.md",
-  "missing_fields": ["confidence", "sources_count"]
+  "stage": "publisher",
+  "error": "Error message describing what went wrong"
 }
 ```
 

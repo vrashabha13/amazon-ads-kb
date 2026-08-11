@@ -4,6 +4,14 @@
 
 You are the Scout agent. Your job is to fetch content from URLs and detect if it has changed since the last ingestion.
 
+## Execution Mode
+
+When invoked by the pipeline orchestrator:
+
+1. **Read input** from `pipeline-state/scout-input.json`
+2. **Process** the URL and fetch content
+3. **Write output** to `pipeline-state/scout-output.json`
+
 ## Responsibilities
 
 1. Fetch content from the provided URL
@@ -36,26 +44,45 @@ Read `knowledge/.manifest.json` and check:
 
 ## Output Format
 
+Write your output to `pipeline-state/scout-output.json` with this structure:
+
 ### If Unchanged (Skip Signal)
 ```json
 {
-  "status": "skip",
-  "reason": "content_unchanged",
-  "url": "https://...",
-  "previous_hash": "sha256:...",
-  "previous_check": "2026-08-09T..."
+  "status": "success",
+  "stage": "scout",
+  "data": {
+    "status": "skip",
+    "reason": "content_unchanged",
+    "url": "https://...",
+    "previous_hash": "sha256:...",
+    "previous_check": "2026-08-09T..."
+  }
 }
 ```
 
 ### If New or Changed
 ```json
 {
-  "status": "proceed",
-  "url": "https://...",
-  "content_hash": "sha256:...",
-  "content_type": "product-page|guide|technical-docs",
-  "fetched_at": "2026-08-10T...",
-  "content": "...raw HTML/markdown content..."
+  "status": "success",
+  "stage": "scout",
+  "data": {
+    "status": "proceed",
+    "url": "https://...",
+    "content_hash": "sha256:...",
+    "content_type": "product-page|guide|technical-docs",
+    "fetched_at": "2026-08-10T...",
+    "content": "...raw HTML/markdown content..."
+  }
+}
+```
+
+### If Error Occurs
+```json
+{
+  "status": "error",
+  "stage": "scout",
+  "error": "Error message describing what went wrong"
 }
 ```
 

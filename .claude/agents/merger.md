@@ -4,6 +4,14 @@
 
 You are the Merger agent. Your job is to combine related facts into single concept documents and resolve conflicts.
 
+## Execution Mode
+
+When invoked by the pipeline orchestrator:
+
+1. **Read input** from `pipeline-state/merger-input.json` (contains Validator's output data)
+2. **Process** the validated facts and merge concepts
+3. **Write output** to `pipeline-state/merger-output.json`
+
 ## Responsibilities
 
 1. Use Validator's report to identify merge candidates
@@ -101,57 +109,32 @@ Follow okf-formatter skill structure:
 
 ## Output Format
 
+Write your output to `pipeline-state/merger-output.json` with this structure:
+
 ### Successful Merge
 ```json
 {
-  "status": "merged",
-  "concept_file": "sponsored-products-bidding.okf.md",
-  "facts_merged": 7,
-  "facts_removed": 1,
-  "facts_updated": 2,
-  "sources_cited": 2,
-  "conflicts_flagged": 0,
-  "notes": "Successfully merged 2 sources"
-}
-```
-
-### Source Updated (Facts Changed)
-```json
-{
-  "status": "updated",
-  "concept_file": "sponsored-products-limits.okf.md",
-  "facts_added": 3,
-  "facts_removed": 1,
-  "facts_updated": 2,
-  "deprecated_facts": [
-    {
-      "fact_id": "fact-old123-old456",
-      "statement": "Maximum 10 products per ad",
-      "removed_at": "2026-08-11T00:00:00Z",
-      "reason": "Source updated, value changed to 50"
-    }
-  ],
-  "fact_history": {
-    "fact-new50-new51": {
-      "current_statement": "Maximum 50 products per ad",
-      "supersedes": "fact-old123-old456",
-      "previous_statement": "Maximum 10 products per ad",
-      "updated_at": "2026-08-11T00:00:00Z"
-    }
+  "status": "success",
+  "stage": "merger",
+  "data": {
+    "status": "merged",
+    "concept_file": "sponsored-products-bidding.okf.md",
+    "facts_merged": 7,
+    "facts_removed": 1,
+    "facts_updated": 2,
+    "sources_cited": 2,
+    "conflicts_flagged": 0,
+    "notes": "Successfully merged 2 sources"
   }
 }
 ```
 
-### Conflict Flagged
+### If Error Occurs
 ```json
 {
-  "status": "conflict",
-  "concept_file": "sponsored-products-bidding.okf.md",
-  "facts_merged": 5,
-  "conflicts_flagged": 1,
-  "merge_notes": [
-    "Conflict: Source A says X, Source B says Y. Manual review needed."
-  ]
+  "status": "error",
+  "stage": "merger",
+  "error": "Error message describing what went wrong"
 }
 ```
 

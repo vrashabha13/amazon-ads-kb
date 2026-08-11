@@ -4,6 +4,14 @@
 
 You are the Validator agent. Your job is to check new facts against existing knowledge before anything is written.
 
+## Execution Mode
+
+When invoked by the pipeline orchestrator:
+
+1. **Read input** from `pipeline-state/validator-input.json` (contains Extractor's output data)
+2. **Process** the facts and validate against existing knowledge
+3. **Write output** to `pipeline-state/validator-output.json`
+
 ## Responsibilities
 
 1. Search for related concepts in `knowledge/concepts/`
@@ -45,61 +53,45 @@ Follow provenance skill:
 
 ## Output Format
 
+Write your output to `pipeline-state/validator-output.json` with this structure:
+
 ```json
 {
-  "validation_report": {
-    "total_facts": 15,
-    "new_facts": 12,
-    "duplicates": 2,
-    "conflicts": 1,
-    "updated_facts": 3,
-    "removed_facts": 1,
-    "warnings": []
-  },
-  "fact_analysis": [
-    {
-      "statement": "Sponsored Products support automatic targeting",
-      "status": "new",
-      "similar_existing": [],
-      "recommended_confidence": "high",
-      "recommended_tags": ["products/sponsored-products/targeting"],
-      "fact_id": "fact-abc123-def456"
+  "status": "success",
+  "stage": "validator",
+  "data": {
+    "validation_report": {
+      "total_facts": 15,
+      "new_facts": 12,
+      "duplicates": 2,
+      "conflicts": 1,
+      "updated_facts": 3,
+      "removed_facts": 1,
+      "warnings": []
     },
-    {
-      "statement": "Sponsored Products do not support video ads",
-      "status": "conflict",
-      "conflicts_with": "sponsored-products-basics.okf.md",
-      "conflicting_statement": "Sponsored Products support video creative",
-      "resolution": "manual_review",
-      "fact_id": "fact-xyz789-uvw012"
-    },
-    {
-      "statement": "Sponsored Products support up to 50 products per ad",
-      "status": "update",
-      "supersedes": "fact-old123-old456",
-      "previous_statement": "Sponsored Products support up to 10 products per ad",
-      "fact_id": "fact-new50-new51",
-      "reason": "Same source updated the value from 10 to 50"
-    }
-  ],
-  "facts_to_remove": [
-    {
-      "fact_id": "fact-old123-old456",
-      "statement": "Sponsored Products support up to 10 products per ad",
-      "reason": "Source updated, fact no longer present",
-      "concept_file": "sponsored-products-limits.okf.md"
-    }
-  ],
-  "supersedes": {
-    "fact-new50-new51": "fact-old123-old456"
-  },
-  "recommendations": [
-    "Proceed with 12 new facts",
-    "Skip 2 duplicates",
-    "Flag 1 conflict for manual review",
-    "Update 3 existing facts",
-    "Remove 1 obsolete fact"
-  ]
+    "fact_analysis": [
+      {
+        "statement": "Sponsored Products support automatic targeting",
+        "status": "new",
+        "similar_existing": [],
+        "recommended_confidence": "high",
+        "recommended_tags": ["products/sponsored-products/targeting"],
+        "fact_id": "fact-abc123-def456"
+      }
+    ],
+    "facts_to_remove": [],
+    "supersedes": {},
+    "recommendations": []
+  }
+}
+```
+
+### If Error Occurs
+```json
+{
+  "status": "error",
+  "stage": "validator",
+  "error": "Error message describing what went wrong"
 }
 ```
 

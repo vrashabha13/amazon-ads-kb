@@ -43,21 +43,25 @@ nano .claude/settings.json
 #### Ingest a URL
 
 ```bash
-# Using Claude Code CLI
-claude -p "ingest <url>, update the bundle"
+# Using npm script
+npm run ingest -- <url>
 
 # Example:
-claude -p "ingest https://advertising.amazon.com/solutions/products/sponsored-products, update the bundle"
-```
+npm run ingest -- https://advertising.amazon.com/solutions/products/sponsored-products
 
-#### Run the ingest script (alternative)
+# Or with local file
+npm run ingest -- tests/fixtures/test-source.html
 
-```bash
+# Or direct node command
 node scripts/ingest.js <url>
-
-# Example:
-node scripts/ingest.js https://advertising.amazon.com/solutions/products/sponsored-products
 ```
+
+The pipeline executes all five stages sequentially:
+1. **Scout** - Fetches content and detects changes
+2. **Extractor** - Extracts facts with source attribution
+3. **Validator** - Validates against existing knowledge
+4. **Merger** - Merges concepts and resolves conflicts
+5. **Publisher** - Writes OKF files and updates indices
 
 ## 📁 Repository Structure
 
@@ -77,7 +81,7 @@ amazon-ads-kb/
 │   ├── skills/                 # Shared rules (OKF format, dedup, provenance)
 │   └── hooks/                 # Validation hooks
 ├── scripts/
-│   └── ingest.js              # CLI entry point
+│   └── ingest.js              # Pipeline orchestrator (main entry point)
 ├── CLAUDE.md                   # Project documentation for Claude
 ├── README.md                   # This file
 └── NOTES.md                    # Design decisions & tradeoffs
@@ -205,13 +209,30 @@ Track progress via `knowledge/index.md`:
 ### Running Tests
 
 ```bash
+# Run pipeline tests
+npm test
+
+# Run with test fixture
+npm run ingest -- tests/fixtures/test-source.html
+```
+
+### Pipeline Internals
+
+The pipeline uses file-based state management:
+
+- **Input files**: `pipeline-state/[stage]-input.json` - Data passed to each stage
+- **Output files**: `pipeline-state/[stage]-output.json` - Results from each stage
+- **Error files**: `pipeline-state/error.json` - Error state if a stage fails
+
+This design enables debugging and inspection of intermediate results.
+
+### Testing Individual Agents
+
+```bash
 # Test individual agents (via Claude Code)
 claude -p "Use the Scout agent to fetch and hash <url>"
 claude -p "Use the Extractor agent to extract facts from content"
 claude -p "Use the Validator agent to check for conflicts"
-
-# Full pipeline test
-claude -p "ingest <url>, run full pipeline and verify"
 ```
 
 ### Adding New Skills
