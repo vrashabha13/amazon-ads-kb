@@ -5,7 +5,10 @@
   "main": "scripts/ingest.js",
   "scripts": {
     "ingest": "node scripts/ingest.js",
-    "test": "node tests/pipeline.test.js"
+    "test": "node tests/pipeline.test.js",
+    "test:idempotency": "node tests/idempotency.test.js",
+    "test:two-run": "node tests/two-run-idempotency.test.js",
+    "test:hash": "node scripts/hash.js"
   },
   "keywords": [
     "amazon-ads",

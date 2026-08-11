@@ -73,10 +73,10 @@ console.log('\n=== Pipeline Tests ===\n');
 
 // Test 1: Pipeline orchestrator script exists
 test('Pipeline orchestrator script exists', () => {
-  const pipelinePath = path.join(TEST_DIR, 'scripts', 'pipeline.js');
-  assert(fs.existsSync(pipelinePath), 'pipeline.js should exist');
+  const pipelinePath = path.join(TEST_DIR, 'scripts', 'ingest.js');
+  assert(fs.existsSync(pipelinePath), 'ingest.js should exist');
   const stats = fs.statSync(pipelinePath);
-  assert(stats.isFile(), 'pipeline.js should be a file');
+  assert(stats.isFile(), 'ingest.js should be a file');
 });
 
 // Test 2: Package.json exists with correct scripts
@@ -103,12 +103,12 @@ test('Pipeline creates state directory', () => {
   // The pipeline should create the directory when started
   // For this test, we'll just verify the logic exists
   const pipelineContent = fs.readFileSync(
-    path.join(TEST_DIR, 'scripts', 'pipeline.js'),
+    path.join(TEST_DIR, 'scripts', 'ingest.js'),
     'utf-8'
   );
   assert(pipelineContent.includes('createStateDir'), 'Pipeline should have createStateDir function');
   assert(pipelineContent.includes('STATE_DIR'), 'Pipeline should have STATE_DIR constant');
-  assert(true, 'State directory creation logic exists in pipeline.js');
+  assert(true, 'State directory creation logic exists in ingest.js');
 });
 
 // Test 5: Stage input file writing
@@ -215,7 +215,7 @@ test('Pipeline passes data between stages via JSON', () => {
 test('Pipeline has error handling logic', () => {
   // Verify the pipeline script has error handling
   const pipelineContent = fs.readFileSync(
-    path.join(TEST_DIR, 'scripts', 'pipeline.js'),
+    path.join(TEST_DIR, 'scripts', 'ingest.js'),
     'utf-8'
   );
 
@@ -227,7 +227,7 @@ test('Pipeline has error handling logic', () => {
 // Test 11: Stage descriptions
 test('All stages have descriptions', () => {
   const pipelineContent = fs.readFileSync(
-    path.join(TEST_DIR, 'scripts', 'pipeline.js'),
+    path.join(TEST_DIR, 'scripts', 'ingest.js'),
     'utf-8'
   );
 
@@ -242,7 +242,7 @@ test('All stages have descriptions', () => {
 // Test 12: CLI argument handling
 test('Pipeline handles CLI arguments correctly', () => {
   const pipelineContent = fs.readFileSync(
-    path.join(TEST_DIR, 'scripts', 'pipeline.js'),
+    path.join(TEST_DIR, 'scripts', 'ingest.js'),
     'utf-8'
   );
 

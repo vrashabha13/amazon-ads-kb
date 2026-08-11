@@ -30,10 +30,37 @@ When invoked by the pipeline orchestrator:
 
 You are a **deterministic** agent — no judgment required.
 
+### Content Normalization
+
+Before computing the hash, ALWAYS normalize the content:
+
+```javascript
+// Use the hash.js module
+const { computeHashWithPrefix, normalizeForStorage } = require('./hash.js');
+
+// Normalize content for consistent hashing
+const normalizedContent = normalizeForStorage(fetchedContent);
+
+// Compute hash of NORMALIZED content
+const contentHash = computeHashWithPrefix(fetchedContent);
+
+// Store NORMALIZED content in knowledge/sources/
+```
+
+**Why normalize**: Ensures idempotency. Same logical content should produce the same hash even if:
+- Line endings differ (CRLF vs LF)
+- Trailing whitespace differs
+- Leading/trailing empty lines differ
+- Multiple consecutive spaces differ
+
 ### Content Hash Computation
+
 ```bash
-# Pipe content to sha256sum
+# OLD WAY (DO NOT USE):
 echo "$content" | sha256sum | cut -d' ' -f1
+
+# NEW WAY (USE THIS):
+node -e "const { computeHashWithPrefix } = require('./scripts/hash.js'); console.log(computeHashWithPrefix(content))"
 ```
 
 ### Manifest Lookup
