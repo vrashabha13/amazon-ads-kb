@@ -8,7 +8,9 @@
     "test": "node tests/pipeline.test.js",
     "test:idempotency": "node tests/idempotency.test.js",
     "test:two-run": "node tests/two-run-idempotency.test.js",
-    "test:hash": "node scripts/hash.js"
+    "test:hash": "node scripts/hash.js",
+    "test:quality": "node tests/knowledge-quality.test.js",
+    "test:hook": "./tests/test-hook-integration.sh"
   },
   "keywords": [
     "amazon-ads",

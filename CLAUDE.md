@@ -4,7 +4,16 @@
 
 This is an autonomous knowledge acquisition system for Amazon Ads. It discovers content from URLs, extracts facts, validates against existing knowledge, merges duplicates, and publishes everything as OKF v0.1 documents.
 
-**Status**: ✅ Production Ready | Tested & Verified
+**Status**: ✅ Production Ready
+
+The system operates end-to-end with:
+- Fully implemented 5-stage pipeline
+- Automated test coverage (30+ tests across 5 suites)
+- Idempotent ingestion with hash-based change detection
+- OKF v0.1 compliance with 10 required fields
+- Multi-language support (English, Chinese)
+
+**Testing**: Automated tests verify pipeline execution, idempotency, frontmatter validation, and knowledge bundle quality. Manual verification includes end-to-end ingestion and re-run safety.
 
 ## Architecture
 
@@ -212,6 +221,26 @@ The system is designed for three diverse content types:
 **Challenges**: Technical details, API-specific concepts, structured content
 **Status**: ⏳ Pending ingestion
 
+## Content Type Support
+
+**Actually Processed:**
+- **HTML/Markdown from web sources**: Fetched via WebFetch/webReader, converted to Markdown
+- **JSON**: System-generated intermediate format for extracted facts
+- **Multi-language**: Processes content in English and Chinese
+
+**Not Supported:**
+- PDF documents
+- CSV files
+- XML files
+- Binary formats
+- Local file uploads (web URLs only)
+
+**Content Detection:**
+The system automatically classifies sources by URL pattern:
+- Product pages: `/solutions/products/*`
+- Guides: `/library/guides/*`
+- Technical docs: `/API/docs/*`
+
 ## OKF v0.1 Format
 
 Every concept document follows the OKF v0.1 specification with project extensions:
@@ -315,18 +344,18 @@ The `validate-okf-frontmatter` hook automatically checks:
 
 **Integration Tests**:
 ```bash
-# Run comprehensive hook integration tests
 ./tests/test-hook-integration.sh
-
-# Tests include:
-# - Hook executable and registered
-# - Blocks invalid documents
-# - Allows valid documents
-# - Ignores non-knowledge files
-# - Ignores non-markdown files
 ```
 
-Expected output: `✅ All hook integration tests passed!`
+**Tests**: 6 validation hook integration tests
+**Expected output**: `✅ All hook integration tests passed!`
+
+**What's tested**:
+- Hook executable and registered
+- Blocks invalid documents (missing required fields)
+- Allows valid documents (all required fields present)
+- Ignores non-knowledge files
+- Ignores non-markdown files
 
 ## Troubleshooting
 

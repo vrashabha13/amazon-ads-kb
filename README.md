@@ -189,11 +189,40 @@ git diff knowledge/concepts/  # Should be empty
 
 ## 🌐 Supported Content Types
 
+The system processes web-based content in the following formats:
+
+- **HTML/Markdown**: Product pages, marketing pages, how-to guides, technical documentation
+  - Fetched via WebFetch/webReader MCP tool
+  - Automatically converted to Markdown for processing
+- **JSON**: Intermediate extracted facts (system-generated)
+
+### Content Type Detection
+
+The system automatically classifies sources by URL pattern:
+
+- `/solutions/products/*` → classified as "product-page"
+- `/library/guides/*` → classified as "guide"
+- `/API/docs/*` → classified as "technical-docs"
+
+### Multi-Language Support
+
+Processes content in English (en-US) and Chinese (zh-CN).
+
+### Currently Supported Content Domains
+
 The system handles diverse Amazon Ads content:
 
 - **Product/Marketing Pages** (advertising.amazon.com/solutions/products/*)
 - **How-to Guides** (advertising.amazon.com/library/guides/*)
 - **Technical Documentation** (advertising.amazon.com/API/docs/*)
+
+### Not Supported
+
+- PDF documents
+- CSV files
+- XML files
+- Binary formats
+- Local file uploads (web URLs only)
 
 ## 📈 Statistics
 
@@ -208,12 +237,35 @@ Track progress via `knowledge/index.md`:
 
 ### Running Tests
 
-```bash
-# Run pipeline tests
-npm test
+The system includes comprehensive test coverage:
 
-# Run with test fixture
-npm run ingest -- tests/fixtures/test-source.html
+**Pipeline Tests:**
+```bash
+npm test                              # Pipeline execution (12 tests)
+npm run test:idempotency              # Content normalization (12 tests)
+npm run test:two-run                  # Idempotency proof (3 tests)
+npm run test:quality                  # Knowledge bundle quality (9 tests)
+npm run test:hook                     # Hook integration (6 tests)
+```
+
+**Test Coverage:**
+- Pipeline structure and data flow
+- Content normalization and hash determinism
+- Two-consecutive-run idempotency
+- OKF frontmatter validation
+- Knowledge bundle quality requirements
+
+**End-to-End Test:**
+```bash
+npm run ingest -- https://advertising.amazon.com/library/guides/test
+```
+
+**Individual Agent Tests:**
+```bash
+# Test individual agents (via Claude Code)
+claude -p "Use the Scout agent to fetch and hash <url>"
+claude -p "Use the Extractor agent to extract facts from content"
+claude -p "Use the Validator agent to check for conflicts"
 ```
 
 ### Pipeline Internals
