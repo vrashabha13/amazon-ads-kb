@@ -1,56 +1,67 @@
 ---
 type: concept
-title: Sponsored Display Basics
-description: Overview of Amazon Sponsored Display advertising format, audience targeting, and display network capabilities
+title: Display Ads Basics (formerly Sponsored Display)
+description: Overview of Amazon Display Ads advertising format, unified platform integration, and multi-channel reach
 resource: https://advertising.amazon.com/solutions/products/sponsored-display
 tags:
+  - products/display-ads/basics
+  - products/display-ads/overview
   - products/sponsored-display/basics
   - products/sponsored-display/overview
   - products/overview
 confidence: high
 sources_count: 1
 official_source: true
-last_checked: 2026-08-12T14:00:00Z
-timestamp: 2026-08-12T14:00:00Z
+last_checked: 2026-08-12T17:57:30Z
+timestamp: 2026-08-12T17:57:30Z
 ---
 
-# Sponsored Display Basics
+# Display Ads Basics (formerly Sponsored Display)
 
 ## Overview
 
-Sponsored Display (展示型推广) is a display advertising solution that helps brands reach relevant audiences both on Amazon and across the web, using creative ad formats and sophisticated audience targeting to drive consideration and conversions.
+**🚨 MAJOR PRODUCT TRANSITION**: Sponsored Display has been officially renamed to **Display Ads** (展示广告) and integrated into Amazon's unified advertising platform that combines functionality from Amazon DSP and the advertising platform into a centralized management system.
+
+Display Ads is a flexible advertising format that helps brands reach relevant audiences across Amazon properties (including Twitch, Fire TV, and Echo Show) and premium placements on the open internet, using both Amazon-generated and custom creative assets.
 
 ## Facts
 
-1. **Ad Formats**: Sponsored Display supports various creative formats including display ads with product images, custom creative assets, and dynamic ads that automatically showcase relevant products.
+1. **🚨 Product Renamed**: Sponsored Display has been officially renamed to Display Ads as part of Amazon's unified advertising platform strategy announced in 2026.
 
-2. **Network Reach**: Ads appear on Amazon properties (product pages, search results) and extend to external websites and apps through Amazon's display network and third-party partnerships.
+2. **Unified Platform Integration**: Display Ads integrated into centralized management center that combines search advertising with Amazon DSP workflows on single platform, simplifying operations while maintaining all powerful advertising functionality.
 
-3. **Audience Targeting**: Campaigns target audiences based on shopping behaviors, product views, purchase history, lifestyle interests, and demographic attributes for precise audience reach.
+3. **Multi-Channel Reach**: Display Ads can reach audiences across Amazon properties including Twitch, Fire TV, and Echo Show, as well as premium placements on the open internet.
 
-4. **Retargeting Capabilities**: Sponsored Display excels at retargeting, allowing advertisers to re-engage customers who viewed their products, visited category pages, or abandoned shopping carts.
+4. **Creative Options**: Support for both Amazon-generated creative assets and custom creative assets gives advertisers flexibility in ad presentation.
 
-5. **Pricing Model**: Sponsored Display uses cost-per-click (CPC) and cost-per-thousand impressions (CPM) pricing models, giving advertisers flexibility based on campaign objectives.
+5. **Campaign Continuity**: Existing Sponsored Display campaigns continue uninterrupted and remain accessible through Campaign Manager in the advertising platform.
 
-6. **Cross-Device Delivery**: Ads are delivered across desktop browsers, mobile browsers, and mobile applications, ensuring consistent brand messaging across devices.
+6. **New Campaign Workflow**: To create new Display Ad campaigns, navigate to Campaigns → Create Campaign → Display (replacing previous Sponsored Display workflow).
 
-7. **Creative Customization**: Advertisers can use Amazon's auto-generated creative templates or upload custom display ad creatives that comply with Amazon's creative specifications.
+7. **Enhanced Functionality**: Unified platform maintains sophisticated audience targeting based on shopping behaviors, product views, purchase history, lifestyle interests, and demographic attributes.
 
-8. **Performance Measurement**: Campaign performance is tracked through impressions, clicks, view-through conversions, and detailed attribution reporting showing customer journey impact.
+8. **Cross-Platform Integration**: Integration combines functionality previously managed separately by Amazon DSP and advertising platform for cohesive campaign management.
+
+9. **Retargeting Capabilities**: Display Ads maintains strong retargeting capabilities, allowing advertisers to re-engage customers who viewed their products or visited category pages.
+
+10. **Pricing Models**: Continues to offer cost-per-click (CPC) and cost-per-thousand impressions (vCPM) pricing models for campaign flexibility.
 
 ## Sources
 
-- All facts: https://advertising.amazon.com/solutions/products/sponsored-display
+- All facts: https://advertising.amazon.com/solutions/products/sponsored-display (2026-08-12T17:57:30Z)
 
 ## Related Concepts
 
-- [Sponsored Display Audience Targeting](concepts/sponsored-display-audience-targeting.okf.md)
+- [Display Ads Audience Targeting](concepts/sponsored-display-audience-targeting.okf.md)
 - [Bidding Strategies](concepts/bidding-strategies.okf.md)
 - [Budget Management](concepts/budget-management.okf.md)
 
 ## Notes
 
-- Sponsored Display extends Amazon advertising beyond Amazon's own platforms
-- Particularly effective for retargeting and consideration campaigns
-- Audience targeting is more sophisticated than Sponsored Products, using behavioral and interest signals
-- Display network reach includes premium publisher sites and apps
+- **Strategic Impact**: HIGH - This represents a major product strategy change for Amazon display advertising
+- **Migration Status**: Existing campaigns continue without interruption, new campaigns use Display Ads workflow
+- **Backward Compatibility**: References to "Sponsored Display" remain valid for existing campaigns and historical data analysis
+- **Platform Benefits**: Unified approach simplifies campaign management while maintaining advanced advertising capabilities
+- **Multi-Channel Expansion**: Enhanced reach to Twitch, Fire TV, Echo Show, and premium open internet placements
+- Display Ads extends Amazon advertising beyond Amazon's own platforms with improved unified management
+- Particularly effective for retargeting and consideration campaigns with enhanced cross-platform reach

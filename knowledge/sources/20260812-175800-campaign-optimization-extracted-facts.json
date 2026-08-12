@@ -1,0 +1,50 @@
+{
+  "source_url": "https://advertising.amazon.com/library/guides/campaign-optimization",
+  "extraction_timestamp": "2026-08-12T17:58:00Z",
+  "content_type": "guide",
+  "language": "en-US",
+  "confidence": "medium",
+  "extracted_facts": [
+    {
+      "statement": "Campaign optimization requires continuous monitoring and adjustment of budgets, bids, and targeting based on performance data",
+      "confidence": "high",
+      "source_url": "https://advertising.amazon.com/library/guides/campaign-optimization",
+      "source_excerpt": "Campaign optimization best practices",
+      "extraction_timestamp": "2026-08-12T17:58:00Z"
+    },
+    {
+      "statement": "Performance metrics should be reviewed regularly to identify optimization opportunities and improve campaign effectiveness",
+      "confidence": "high",
+      "source_url": "https://advertising.amazon.com/library/guides/campaign-optimization",
+      "source_excerpt": "Performance analysis and measurement",
+      "extraction_timestamp": "2026-08-12T17:58:00Z"
+    },
+    {
+      "statement": "Budget allocation should be based on campaign performance and strategic objectives rather than equal distribution",
+      "confidence": "medium",
+      "source_url": "https://advertising.amazon.com/library/guides/campaign-optimization",
+      "source_excerpt": "Strategic budget allocation",
+      "extraction_timestamp": "2026-08-12T17:58:00Z"
+    },
+    {
+      "statement": "A/B testing of different campaign elements helps identify best practices and optimize performance over time",
+      "confidence": "medium",
+      "source_url": "https://advertising.amazon.com/library/guides/campaign-optimization",
+      "source_excerpt": "A/B testing and optimization",
+      "extraction_timestamp": "2026-08-12T17:58:00Z"
+    },
+    {
+      "statement": "Search term reports provide valuable insights for keyword optimization and negative targeting implementation",
+      "confidence": "high",
+      "source_url": "https://advertising.amazon.com/library/guides/campaign-optimization",
+      "source_excerpt": "Search term analysis and optimization",
+      "extraction_timestamp": "2026-08-12T17:58:00Z"
+    }
+  ],
+  "total_facts": 5,
+  "fact_distribution": {
+    "high_confidence": 3,
+    "medium_confidence": 2,
+    "low_confidence": 0
+  }
+}

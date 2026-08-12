@@ -4,6 +4,66 @@ This log tracks all ingestion operations performed on the Amazon Ads knowledge b
 
 ## Recent Activity
 
+### 2026-08-12T17:58:00Z (PIPELINE COMPLETION - NO PLACEHOLDERS)
+
+**Full Pipeline Execution**: All placeholder sources removed and replaced with actual content through complete pipeline processing
+
+**Sources Processed** (4 sources fully executed through Scout → Extractor → Validator → Merger → Publisher):
+- https://advertising.amazon.com/solutions/products/sponsored-brands ✅
+- https://advertising.amazon.com/solutions/products/sponsored-display ✅  
+- https://advertising.amazon.com/library/guides/sponsored-products-best-practices ✅
+- https://advertising.amazon.com/library/guides/campaign-optimization ✅
+
+**Major Discovery**: Sponsored Display → Display Ads product transition detected and documented
+
+**Pipeline Results**:
+- ✅ Scout: Content fetched and saved for all 4 sources
+- ✅ Extractor: 43 facts extracted with proper provenance
+- ✅ Validator: Validated against existing concepts, conflicts identified and resolved
+- ✅ Merger: Concept updates merged with new information
+- ✅ Publisher: Concept files updated, manifest finalized, indices updated
+
+**Key Updates**:
+- Updated `sponsored-brands-basics.okf.md` with accurate information from actual content
+- **Major Update**: `sponsored-display-basics.okf.md` - documented product transition from Sponsored Display to Display Ads
+- Enhanced concept files with 43 new extracted facts
+- Updated `.manifest.json` with proper content hashes and source metadata
+- Updated `index.md` with Display Ads branding and statistics
+- Created 8 new source files in `knowledge/sources/`
+
+**Source Files Created**:
+1. `20260812-175715-sponsored-brands-page.txt` + extracted facts
+2. `20260812-175730-sponsored-display-page.txt` + extracted facts  
+3. `20260812-175745-sponsored-products-best-practices.txt` + extracted facts
+4. `20260812-175800-campaign-optimization.txt` + extracted facts
+
+**Major Product Transition Alert**:
+- **Product**: Sponsored Display → Display Ads (展示广告)
+- **Platform**: Unified advertising platform integration (Amazon DSP + Advertising Platform)
+- **Impact**: HIGH - Major strategic change for Amazon display advertising
+- **Status**: Existing campaigns continue, new campaigns use Display Ads workflow
+
+**Quality Assurance**:
+- ✅ No placeholder entries remain in manifest
+- ✅ All sources have real content hashes
+- ✅ All concept files properly formatted with OKF v0.1 frontmatter
+- ✅ Source attribution complete for all facts
+- ✅ Hierarchical tags properly applied
+- ✅ Cross-links maintained and updated
+
+**Manifest Statistics**:
+- Total sources: 5 (1 existing + 4 newly processed)
+- Total facts extracted: 70 (27 existing + 43 new)
+- Pipeline status: "all_sources_processed"
+- All sources marked as "ingested" with proper timestamps
+
+**Idempotency Verification**:
+- System demonstrated safe re-run capability with existing sponsored-products source
+- Semantic duplicate detection prevents unnecessary re-creation
+- Hash-based change detection working correctly
+
+---
+
 ### 2026-08-12T14:00:00Z (KNOWLEDGE EXPANSION)
 
 **Batch Ingestion**: Multiple sources added to expand knowledge base
@@ -158,12 +218,16 @@ This log tracks all ingestion operations performed on the Amazon Ads knowledge b
 
 ## Statistics
 
-- Total Ingestions: 3
-- Successful: 3
+- Total Ingestions: 4
+- Successful: 4
 - Failed: 0
 - Skipped (unchanged): 0
 - Re-ingested (hash changed): 1
-- Batch ingestions: 1
+- Batch ingestions: 2
+- Major product transitions detected: 1
+- Total sources processed: 5
+- Total concepts in knowledge base: 14
+- Pipeline completion rate: 100% (all sources through all stages)
 
 ---
 

@@ -1,0 +1,99 @@
+{
+  "source_url": "https://advertising.amazon.com/solutions/products/sponsored-brands",
+  "extraction_timestamp": "2026-08-12T17:57:15Z",
+  "content_type": "product-page",
+  "language": "zh-CN",
+  "confidence": "high",
+  "extracted_facts": [
+    {
+      "statement": "Sponsored Brands is an advertising solution that helps customers discover brands on Amazon using rich creative assets like videos, images, and collections",
+      "confidence": "high",
+      "source_url": "https://advertising.amazon.com/solutions/products/sponsored-brands",
+      "source_excerpt": "品牌推广是一种广告解决方案，旨在帮助顾客在亚马逊站内发现您的品牌。利用丰富的展示和视频创意素材来吸引受众的注意力，让品牌脱颖而出。",
+      "extraction_timestamp": "2026-08-12T17:57:15Z"
+    },
+    {
+      "statement": "Sponsored Brands ads appear in prime locations including top of search results and product pages to drive traffic to brand storefronts or product detail pages",
+      "confidence": "high",
+      "source_url": "https://advertising.amazon.com/solutions/products/sponsored-brands",
+      "source_excerpt": "广告展示在搜索结果首页首位和商品页面等显眼的广告位上，为您的品牌旗舰店或商品详情页引流",
+      "extraction_timestamp": "2026-08-12T17:57:15Z"
+    },
+    {
+      "statement": "Sponsored Brands supports three pricing models: CPC for page traffic, vCPM for brand visibility share, and fixed pre-pay pricing for reserving share of voice",
+      "confidence": "high",
+      "source_url": "https://advertising.amazon.com/solutions/products/sponsored-brands",
+      "source_excerpt": "品牌推广支持多种定价模式，具体取决于您的广告活动目标：单次点击成本 (CPC)，用于提升页面效果；每千次可见展示成本 (vCPM)，用于提升品牌展示量份额；固定的预付定价，用于预留展示份额",
+      "extraction_timestamp": "2026-08-12T17:57:15Z"
+    },
+    {
+      "statement": "CPC and vCPM campaigns have no minimum spend requirements and allow flexible bid adjustments, but reserved share of voice requires minimum spend commitments",
+      "confidence": "high",
+      "source_url": "https://advertising.amazon.com/solutions/products/sponsored-brands",
+      "source_excerpt": "CPC 或 vCPM 广告活动没有最低支出要求，您可以随时调整竞价或暂停广告活动。但预留展示份额需要做出最低支出承诺。",
+      "extraction_timestamp": "2026-08-12T17:57:15Z"
+    },
+    {
+      "statement": "Sponsored Brands is available to vendors, book vendors, KDP authors, vendors, and professional sellers who have completed Amazon Brand Registry",
+      "confidence": "high",
+      "source_url": "https://advertising.amazon.com/solutions/products/sponsored-brands",
+      "source_excerpt": "品牌推广面向已完成亚马逊品牌注册的供应商、图书供应商、Kindle 自助出版 (KDP) 作者、服务商和专业卖家提供。",
+      "extraction_timestamp": "2026-08-12T17:57:15Z"
+    },
+    {
+      "statement": "Adult products, used goods, refurbished products, and closed category products are not eligible for Sponsored Brands promotion",
+      "confidence": "high",
+      "source_url": "https://advertising.amazon.com/solutions/products/sponsored-brands",
+      "source_excerpt": "目前，成人用品、二手商品、翻新商品和已关闭品类中的商品不符合推广条件。",
+      "extraction_timestamp": "2026-08-12T17:57:15Z"
+    },
+    {
+      "statement": "Sponsored Brands provides AI-powered image generation tools for creating custom brand creative assets at no cost",
+      "confidence": "medium",
+      "source_url": "https://advertising.amazon.com/solutions/products/sponsored-brands",
+      "source_excerpt": "免费使用 AI 驱动的图像生成工具来制作品牌创意。",
+      "extraction_timestamp": "2026-08-12T17:57:15Z"
+    },
+    {
+      "statement": "Sponsored Brands videos can be linked to brand storefronts and can showcase up to three products in a single ad",
+      "confidence": "high",
+      "source_url": "https://advertising.amazon.com/solutions/products/sponsored-brands",
+      "source_excerpt": "可以。将品牌推广视频链接到品牌旗舰店，使您能够推广富有吸引力的视频，并灵活地在广告中向顾客展示多达三件商品。",
+      "extraction_timestamp": "2026-08-12T17:57:15Z"
+    },
+    {
+      "statement": "Sponsored Brands offers multiple campaign objectives including increasing page visits, improving brand visibility share, and reserving share of voice",
+      "confidence": "high",
+      "source_url": "https://advertising.amazon.com/solutions/products/sponsored-brands",
+      "source_excerpt": "您可以通过增加页面访问次数来增加品牌旗舰店或商品页面的流量，提升品牌展示量份额以提升您的品牌在品类中的可见度；您也可以预留展示份额",
+      "extraction_timestamp": "2026-08-12T17:57:15Z"
+    },
+    {
+      "statement": "Brand new customer metrics allow tracking first-time brand purchasers over a 12-month lookback period, including order volume and sales percentage",
+      "confidence": "high",
+      "source_url": "https://advertising.amazon.com/solutions/products/sponsored-brands",
+      "source_excerpt": "通过这些指标，您可以在 12 个月的回溯期内跟踪首次购买您品牌商品的顾客所产生的订单量、品牌新客订单量占总订单量的百分比",
+      "extraction_timestamp": "2026-08-12T17:57:15Z"
+    },
+    {
+      "statement": "Amazon provides video creative creation and editing services for Sponsored Brands, including complimentary videos through qualifying campaigns or affordable paid services",
+      "confidence": "medium",
+      "source_url": "https://advertising.amazon.com/solutions/products/sponsored-brands",
+      "source_excerpt": "无论您是已具备视频素材还是需要从头开始制作广告，亚马逊的视频创意素材制作和编辑服务都可以帮助您制作富有启发性的视频。通过符合条件的广告活动获得附赠视频，或者通过经济实惠的收费服务获得视频。",
+      "extraction_timestamp": "2026-08-12T17:57:15Z"
+    },
+    {
+      "statement": "Sponsored Brands supports keyword targeting and product targeting to reach relevant customers",
+      "confidence": "high",
+      "source_url": "https://advertising.amazon.com/solutions/products/sponsored-brands",
+      "source_excerpt": "通过精准的关键词投放和商品投放，触达对您的业务非常重要的顾客。",
+      "extraction_timestamp": "2026-08-12T17:57:15Z"
+    }
+  ],
+  "total_facts": 12,
+  "fact_distribution": {
+    "high_confidence": 10,
+    "medium_confidence": 2,
+    "low_confidence": 0
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "source_url": "https://advertising.amazon.com/solutions/products/sponsored-display",
+  "extraction_timestamp": "2026-08-12T17:57:30Z",
+  "content_type": "product-page",
+  "language": "zh-CN",
+  "confidence": "high",
+  "extracted_facts": [
+    {
+      "statement": "Sponsored Display has been officially renamed to Display Ads as part of Amazon's unified advertising platform strategy",
+      "confidence": "high",
+      "source_url": "https://advertising.amazon.com/solutions/products/sponsored-display",
+      "source_excerpt": "展示型推广现被称为展示广告。亚马逊正式推出统一的广告平台",
+      "extraction_timestamp": "2026-08-12T17:57:30Z"
+    },
+    {
+      "statement": "Display Ads have been integrated into a unified display advertising system that combines functionality previously managed separately by Amazon DSP and the advertising platform",
+      "confidence": "high",
+      "source_url": "https://advertising.amazon.com/solutions/products/sponsored-display",
+      "source_excerpt": "展示型推广现已纳入亚马逊更广泛的展示广告体系，此体系融合了此前分别由亚马逊 DSP 和广告平台管理的功能",
+      "extraction_timestamp": "2026-08-12T17:57:30Z"
+    },
+    {
+      "statement": "A new centralized management center integrates all Amazon advertising products, combining search advertising with Amazon DSP workflows on a single platform",
+      "confidence": "high",
+      "source_url": "https://advertising.amazon.com/solutions/products/sponsored-display",
+      "source_excerpt": "该中心统一接入所有亚马逊广告产品，将搜索广告与亚马逊 DSP 工作流汇聚于同一工作平台",
+      "extraction_timestamp": "2026-08-12T17:57:30Z"
+    },
+    {
+      "statement": "Existing Sponsored Display campaigns continue uninterrupted and can be accessed through Campaign Manager in the advertising platform",
+      "confidence": "high",
+      "source_url": "https://advertising.amazon.com/solutions/products/sponsored-display",
+      "source_excerpt": "现有的展示型推广广告活动将继续不间断投放。您可以通过广告平台中的"广告活动管理器"访问现有的展示型推广广告活动",
+      "extraction_timestamp": "2026-08-12T17:57:30Z"
+    },
+    {
+      "statement": "To create new Display Ad campaigns, navigate to Campaigns, click Create Campaign, then select Display",
+      "confidence": "high",
+      "source_url": "https://advertising.amazon.com/solutions/products/sponsored-display",
+      "source_excerpt": "要创建新的展示广告活动，请前往"广告活动"，点击"创建广告活动"，然后点击"展示"",
+      "extraction_timestamp": "2026-08-12T17:57:30Z"
+    },
+    {
+      "statement": "Display Ads can reach audiences across Amazon properties including Twitch, Fire TV, and Echo Show, as well as premium placements on the open internet",
+      "confidence": "high",
+      "source_url": "https://advertising.amazon.com/solutions/products/sponsored-display",
+      "source_excerpt": "可将您的展示广告活动投放到亚马逊全域资源（包括 Twitch、Fire TV 和 Echo Show）以及开放互联网上的优质版位",
+      "extraction_timestamp": "2026-08-12T17:57:30Z"
+    },
+    {
+      "statement": "Display Ads support both Amazon-generated creative assets and custom creative assets for advertisers",
+      "confidence": "high",
+      "source_url": "https://advertising.amazon.com/solutions/products/sponsored-display",
+      "source_excerpt": "展示广告是一种灵活的广告格式，可以使用亚马逊生成的创意素材或您自己的创意素材",
+      "extraction_timestamp": "2026-08-12T17:57:30Z"
+    },
+    {
+      "statement": "The unified platform maintains all powerful advertising functionality while providing simplified operations",
+      "confidence": "medium",
+      "source_url": "https://advertising.amazon.com/solutions/products/sponsored-display",
+      "source_excerpt": "这一全新方向实现了您期待的简易操作，同时保留了您依赖的所有强大广告功能",
+      "extraction_timestamp": "2026-08-12T17:57:30Z"
+    }
+  ],
+  "total_facts": 8,
+  "fact_distribution": {
+    "high_confidence": 7,
+    "medium_confidence": 1,
+    "low_confidence": 0
+  },
+  "major_transition_alert": {
+    "product_renamed": "Sponsored Display → Display Ads",
+    "platform_change": "Integration into unified advertising platform",
+    "migration_status": "Existing campaigns continue, new campaigns use Display Ads workflow",
+    "strategic_impact": "High - represents major product strategy change for Amazon display advertising"
+  }
+}

@@ -1,0 +1,147 @@
+{
+  "source_url": "https://advertising.amazon.com/library/guides/sponsored-products-best-practices",
+  "extraction_timestamp": "2026-08-12T17:57:45Z",
+  "content_type": "guide",
+  "language": "en-US",
+  "confidence": "high",
+  "extracted_facts": [
+    {
+      "statement": "Sponsored Products are CPC ads that promote individual product listings on Amazon and select premium apps and websites, available for professional sellers, vendors, book vendors, authors, and agencies",
+      "confidence": "high",
+      "source_url": "https://advertising.amazon.com/library/guides/sponsored-products-best-practices",
+      "source_excerpt": "Sponsored Products are cost-per-click (CPC) ads that promote individual product listings on Amazon, and on select premium apps and websites. Sponsored Products are available for professional sellers, vendors, book vendors, authors, and agencies",
+      "extraction_timestamp": "2026-08-12T17:57:45Z"
+    },
+    {
+      "statement": "Suggested products are 321 times more likely to generate ad-attributed sales when advertised compared to products that are not suggested",
+      "confidence": "high",
+      "source_url": "https://advertising.amazon.com/library/guides/sponsored-products-best-practices",
+      "source_excerpt": "Suggested products are 321 times more likely to generate ad-attributed sales when advertised, compared to products that are not suggested",
+      "extraction_timestamp": "2026-08-12T17:57:45Z"
+    },
+    {
+      "statement": "Sponsored Products require products to display the featured offer, be in stock, and include trusted Amazon shopping attributes to be eligible for advertising",
+      "confidence": "high",
+      "source_url": "https://advertising.amazon.com/library/guides/sponsored-products-best-practices",
+      "source_excerpt": "Sponsored Products only appear when your advertised items are in stock, and include trusted Amazon shopping attributes",
+      "extraction_timestamp": "2026-08-12T17:57:45Z"
+    },
+    {
+      "statement": "Product detail pages should have titles approximately 60 characters long, at least 4 high-quality zoomable images (1000+ pixels), and 3+ bullet points for optimal performance",
+      "confidence": "high",
+      "source_url": "https://advertising.amazon.com/library/guides/sponsored-products-best-practices",
+      "source_excerpt": "Make titles approximately 60 characters long. Feature four or more high-quality, zoomable images. Images must be at least 1,000 pixels in height or width. Include at least three bullet points",
+      "extraction_timestamp": "2026-08-12T17:57:45Z"
+    },
+    {
+      "statement": "Products advertised should have 5+ customer reviews with 3.5+ star ratings, the Prime badge through FBA, and competitive pricing for best performance",
+      "confidence": "high",
+      "source_url": "https://advertising.amazon.com/library/guides/sponsored-products-best-practices",
+      "source_excerpt": "Pick products with positive customer reviews. Advertise products that have five or more customer reviews—with a rating of 3.5 stars or higher. Get the Prime badge. Enroll your eligible products in Fulfillment by Amazon. Price products competitively",
+      "extraction_timestamp": "2026-08-12T17:57:45Z"
+    },
+    {
+      "statement": "Automatic targeting offers 4 match types: close match (closely related terms), loose match (loosely related terms), substitutes (similar products), and complements (complementary products)",
+      "confidence": "high",
+      "source_url": "https://advertising.amazon.com/library/guides/sponsored-products-best-practices",
+      "source_excerpt": "You can also use any of the four automatic targeting match types: Close match, Loose match, Substitutes, Complements",
+      "extraction_timestamp": "2026-08-12T17:57:45Z"
+    },
+    {
+      "statement": "Manual targeting provides flexibility to choose specific keywords or products and manage performance at the target level with greater control",
+      "confidence": "high",
+      "source_url": "https://advertising.amazon.com/library/guides/sponsored-products-best-practices",
+      "source_excerpt": "With manual targeting, you can manually select which keywords or products you want to target. This targeting option gives you the flexibility to choose your own targets and manage performance at the target level",
+      "extraction_timestamp": "2026-08-12T17:57:45Z"
+    },
+    {
+      "statement": "Product targeting strategies include targeting high-performing products, using category targeting for new products, and targeting own product pages to showcase product range",
+      "confidence": "high",
+      "source_url": "https://advertising.amazon.com/library/guides/sponsored-products-best-practices",
+      "source_excerpt": "Target high performing products to help drive more sales. Use category targeting to help increase visibility of new products. Target your own product pages to showcase your product range",
+      "extraction_timestamp": "2026-08-12T17:57:45Z"
+    },
+    {
+      "statement": "Negative targeting prevents ads from appearing on specific shopping results or detail pages that don't meet performance goals, helping avoid wasted spend",
+      "confidence": "high",
+      "source_url": "https://advertising.amazon.com/library/guides/sponsored-products-best-practices",
+      "source_excerpt": "Adding negative products and brands to your campaigns prevents your ads from appearing on specific shopping results or detail pages that don't meet your performance goals",
+      "extraction_timestamp": "2026-08-12T17:57:45Z"
+    },
+    {
+      "statement": "Sponsored Products campaigns have no monthly or upfront fees, with recommended starting daily budget of $10 and flexible adjustment options",
+      "confidence": "high",
+      "source_url": "https://advertising.amazon.com/library/guides/sponsored-products-best-practices",
+      "source_excerpt": "Sponsored Products campaigns have no monthly or upfront fees. We recommend starting with a daily budget of $10 or equivalent. You have the flexibility to adjust your budget at any time",
+      "extraction_timestamp": "2026-08-12T17:57:45Z"
+    },
+    {
+      "statement": "Three bidding strategies available: dynamic bids up and down, dynamic bids down only, and fixed bids, with placement bid adjustments up to 900%",
+      "confidence": "high",
+      "source_url": "https://advertising.amazon.com/library/guides/sponsored-products-best-practices",
+      "source_excerpt": "Choose from multiple bidding strategies to optimize your campaign and control your costs. Use dynamic bids - up and down or dynamic bids - down only and Amazon adjusts your bid using real-time signals. Choose fixed bids to use the exact bid you've entered. Adjust placement bids up to 900%",
+      "extraction_timestamp": "2026-08-12T17:57:45Z"
+    },
+    {
+      "statement": "Key performance metrics include impressions, clicks, sales, cost-per-click, and new-to-brand orders for measuring campaign effectiveness",
+      "confidence": "high",
+      "source_url": "https://advertising.amazon.com/library/guides/sponsored-products-best-practices",
+      "source_excerpt": "Key measurements include: Impressions, Clicks, Sales, Cost-per-click, New-to-brand orders",
+      "extraction_timestamp": "2026-08-12T17:57:45Z"
+    },
+    {
+      "statement": "Amazon provides 5 main reports: search term report, targeting report, advertised product report, placement report, and performance over time report",
+      "confidence": "high",
+      "source_url": "https://advertising.amazon.com/library/guides/sponsored-products-best-practices",
+      "source_excerpt": "Amazon offers several reports: Search term report, Targeting report, Advertised product report, Placement report, Performance over time report",
+      "extraction_timestamp": "2026-08-12T17:57:45Z"
+    },
+    {
+      "statement": "First 30-day optimization strategies include always-on campaigns, advertising 2+ suggested products, adjusting budgets based on performance, and creating manual campaigns to supplement automated ones",
+      "confidence": "high",
+      "source_url": "https://advertising.amazon.com/library/guides/sponsored-products-best-practices",
+      "source_excerpt": "Take an always-on approach with your campaign by setting no end date. Advertise at least 2 suggested products. Adjust budget and bids based on performance. Create manual campaigns to supplement your automated campaign",
+      "extraction_timestamp": "2026-08-12T17:57:45Z"
+    },
+    {
+      "statement": "New products are 231 times more likely to generate ad-attributed sales when advertised compared to products that are not new",
+      "confidence": "high",
+      "source_url": "https://advertising.amazon.com/library/guides/sponsored-products-best-practices",
+      "source_excerpt": "New products are 231 times more likely to generate ad-attributed sales when advertised, compared to products that are not new",
+      "extraction_timestamp": "2026-08-12T17:57:45Z"
+    },
+    {
+      "statement": "Cross-product campaigns combining Sponsored Products with Sponsored Brands, display ads, and streaming TV can help generate more impressions and sales",
+      "confidence": "medium",
+      "source_url": "https://advertising.amazon.com/library/guides/sponsored-products-best-practices",
+      "source_excerpt": "Self-service ad solutions, such as Sponsored Brands, display ads, and streaming TV, can be combined with your Sponsored Products Campaign to help improve your chances of generating more impressions",
+      "extraction_timestamp": "2026-08-12T17:57:45Z"
+    },
+    {
+      "statement": "Bulk operations allow editing, optimizing, and creating multiple campaigns at once for efficient management at scale",
+      "confidence": "medium",
+      "source_url": "https://advertising.amazon.com/library/guides/sponsored-products-best-practices",
+      "source_excerpt": "Use bulk operations to edit, optimize, and even create multiple campaigns at once, saving you time when you want to make many changes",
+      "extraction_timestamp": "2026-08-12T17:57:45Z"
+    },
+    {
+      "statement": "ASINs should be grouped by same category, closely related products, price range and conversions to avoid mixing products with different ROAS performance",
+      "confidence": "high",
+      "source_url": "https://advertising.amazon.com/library/guides/sponsored-products-best-practices",
+      "source_excerpt": "Only include ASINs from the same category in one campaign. We recommend choosing products that are closely related to each other. Group ASINs based on price range and conversions within the same category, so not to mix products that have different performance on ROAS",
+      "extraction_timestamp": "2026-08-12T17:57:45Z"
+    }
+  ],
+  "total_facts": 18,
+  "fact_distribution": {
+    "high_confidence": 17,
+    "medium_confidence": 1,
+    "low_confidence": 0
+  },
+  "content_quality": {
+    "comprehensiveness": "high",
+    "actionability": "high",
+    "data_driven": true,
+    "multiple_experience_levels": ["beginner", "intermediate", "advanced"]
+  }
+}
