@@ -15,6 +15,7 @@ const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
 const { computeHash, computeHashWithPrefix, normalizeForStorage } = require('./hash.js');
+const AgentInvoker = require('./agent-invoker.js');
 
 // ANSI colors for output
 const colors = {
@@ -97,20 +98,6 @@ function readStageOutput(stageName) {
 }
 
 /**
- * Fetch content from URL or file
- */
-async function fetchContent(urlOrPath) {
-  // Check if it's a local file
-  if (fs.existsSync(urlOrPath) || urlOrPath.startsWith('tests/')) {
-    return fs.readFileSync(urlOrPath, 'utf-8');
-  }
-
-  // For URLs, in a real implementation we would use WebFetch or webReader
-  // For now, return a placeholder for URLs
-  throw new Error('URL fetching not implemented in simulation mode - use local test fixtures');
-}
-
-/**
  * Execute a pipeline stage
  */
 async function executeStage(stage, inputData) {
@@ -118,71 +105,46 @@ async function executeStage(stage, inputData) {
   log(`STAGE ${stage.number}/5`, stage.name, colors.magenta);
   log(stage.name, stage.description, colors.cyan);
 
-  // For Scout stage, fetch and normalize content
-  if (stage.name === 'SCOUT' && inputData.url) {
-    try {
-      const rawContent = await fetchContent(inputData.url);
-      const normalizedContent = normalizeForStorage(rawContent);
-      const contentHash = computeHashWithPrefix(rawContent);
-
-      log(stage.name, `Fetched ${rawContent.length} bytes`, colors.cyan);
-      log(stage.name, `Normalized to ${normalizedContent.length} bytes`, colors.cyan);
-      log(stage.name, `Content hash: ${contentHash.substring(0, 20)}...`, colors.cyan);
-
-      // Store normalized content
-      const sourcesDir = path.join(process.cwd(), 'knowledge', 'sources');
-      if (!fs.existsSync(sourcesDir)) {
-        fs.mkdirSync(sourcesDir, { recursive: true });
-      }
-
-      const timestamp = new Date().toISOString().replace(/[:.]/g, '').substring(0, 15);
-      const urlSlug = inputData.url.split('/').pop().replace(/[^a-z0-9-]/gi, '-');
-      const sourceFile = path.join(sourcesDir, `${timestamp}-${urlSlug}.txt`);
-      fs.writeFileSync(sourceFile, normalizedContent);
-
-      // Update input data with hash and content
-      inputData.content_hash = contentHash;
-      inputData.content = normalizedContent;
-      inputData.fetched_at = new Date().toISOString();
-    } catch (e) {
-      // If fetching fails, use simulation mode
-      log(stage.name, `Using simulation mode (${e.message})`, colors.yellow);
-    }
-  }
-
   // Write input file for this stage
   writeStageInput(stage.name, inputData);
   log(stage.name, `Input written to pipeline-state/${stage.name.toLowerCase()}-input.json`, colors.cyan);
 
   // Execute the agent
   try {
-    // In a real implementation, this would invoke Claude Code's Agent tool
-    // For now, we'll simulate the execution
-    log(stage.name, 'Executing...', colors.cyan);
+    log(stage.name, 'Executing agent...', colors.cyan);
 
-    // Simulate processing time
-    await new Promise(resolve => setTimeout(resolve, 100));
+    // Initialize agent invoker
+    const agentInvoker = new AgentInvoker({
+      projectDir: process.cwd(),
+      timeoutMs: 300000, // 5 minutes per agent
+      maxRetries: 3,
+      retryDelayMs: 5000
+    });
 
-    // Read the output (for now, create it since we don't have real agent execution)
-    const outputFile = path.join(STATE_DIR, `${stage.name.toLowerCase()}-output.json`);
-    const outputData = {
-      status: 'success',
-      stage: stage.name.toLowerCase(),
-      data: inputData,
-      processed: true,
-      timestamp: new Date().toISOString()
-    };
-    fs.writeFileSync(outputFile, JSON.stringify(outputData, null, 2));
+    // Invoke the agent with retry logic
+    const agentResult = await agentInvoker.invokeAgentWithRetry(stage.agent, inputData, {
+      timeout: 300000
+    });
 
-    // Read and validate output
-    const output = readStageOutput(stage.name);
-
-    if (output.status === 'error') {
-      throw new Error(output.error || 'Stage failed without error message');
+    // Validate agent response
+    if (!agentResult || typeof agentResult !== 'object') {
+      throw new Error('Agent returned invalid response');
     }
 
-    log(stage.name, `Status: ${output.status}`, colors.green);
-    return output;
+    if (agentResult.status === 'error') {
+      throw new Error(agentResult.error || 'Agent failed without error message');
+    }
+
+    // Write output file for next stage
+    const outputFile = path.join(STATE_DIR, `${stage.name.toLowerCase()}-output.json`);
+    fs.writeFileSync(outputFile, JSON.stringify(agentResult, null, 2));
+
+    // Log metrics
+    const metrics = agentInvoker.getMetrics();
+    log(stage.name, `Status: ${agentResult.status}`, colors.green);
+    log(stage.name, `Invocation time: ${Math.round(metrics.averageTime)}ms (avg)`, colors.cyan);
+
+    return agentResult;
 
   } catch (e) {
     // Write error state
