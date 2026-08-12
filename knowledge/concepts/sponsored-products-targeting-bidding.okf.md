@@ -37,6 +37,13 @@ Sponsored Products offers flexible targeting options including manual keyword/pr
 
 - All facts: https://advertising.amazon.com/solutions/products/sponsored-products
 
+## Related Concepts
+
+- [Sponsored Products Budget and Costs](concepts/sponsored-products-budget-costs.okf.md)
+- [Sponsored Products Basics](concepts/sponsored-products-basics.okf.md)
+- [Bidding Strategies](concepts/bidding-strategies.okf.md)
+- [Budget Management](concepts/budget-management.okf.md)
+
 ## Notes
 
 - Content language: Chinese (zh-CN) - extracted from Chinese version of Amazon Ads page

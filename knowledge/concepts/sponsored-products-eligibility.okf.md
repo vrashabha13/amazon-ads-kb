@@ -35,6 +35,10 @@ Sponsored Products is available to specific seller types and product categories,
 
 - All facts: https://advertising.amazon.com/solutions/products/sponsored-products
 
+## Related Concepts
+
+- [Sponsored Products Basics](concepts/sponsored-products-basics.okf.md)
+
 ## Notes
 
 - Content language: Chinese (zh-CN) - extracted from Chinese version of Amazon Ads page

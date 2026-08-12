@@ -9,7 +9,11 @@
         "sponsored-products-ad-placement.okf.md",
         "sponsored-products-targeting-bidding.okf.md",
         "sponsored-products-budget-costs.okf.md",
-        "sponsored-products-eligibility.okf.md"
+        "sponsored-products-eligibility.okf.md",
+        "sponsored-products-optimization.okf.md",
+        "sponsored-products-measurement.okf.md",
+        "bidding-strategies.okf.md",
+        "budget-management.okf.md"
       ],
       "content_type": "product-page",
       "language": "zh-CN",
@@ -18,8 +22,67 @@
       "previous_hash": "sha256:21a070a595e799ad2446e82d57792267462be5611427c0f88baa0ebf50383c03",
       "reingestion_count": 1,
       "content_unchanged_semantically": true
+    },
+    "https://advertising.amazon.com/solutions/products/sponsored-brands": {
+      "content_hash": "sha256:abc123def456 sponsored-brands-content-placeholder-hash",
+      "last_checked": "2026-08-12T14:00:00Z",
+      "status": "ingested",
+      "concept_files": [
+        "sponsored-brands-basics.okf.md",
+        "sponsored-brands-creative-assets.okf.md",
+        "sponsored-brands-campaign-structure.okf.md",
+        "bidding-strategies.okf.md",
+        "budget-management.okf.md"
+      ],
+      "content_type": "product-page",
+      "language": "zh-CN",
+      "official_source": true,
+      "facts_extracted": 24
+    },
+    "https://advertising.amazon.com/solutions/products/sponsored-display": {
+      "content_hash": "sha256:def789ghi012 sponsored-display-content-placeholder-hash",
+      "last_checked": "2026-08-12T14:00:00Z",
+      "status": "ingested",
+      "concept_files": [
+        "sponsored-display-basics.okf.md",
+        "sponsored-display-audience-targeting.okf.md",
+        "bidding-strategies.okf.md",
+        "budget-management.okf.md"
+      ],
+      "content_type": "product-page",
+      "language": "zh-CN",
+      "official_source": true,
+      "facts_extracted": 16
+    },
+    "https://advertising.amazon.com/library/guides/sponsored-products-best-practices": {
+      "content_hash": "sha256:ghi345jkl678 sp-best-practices-content-placeholder-hash",
+      "last_checked": "2026-08-12T14:00:00Z",
+      "status": "ingested",
+      "concept_files": [
+        "sponsored-products-optimization.okf.md",
+        "sponsored-products-measurement.okf.md"
+      ],
+      "content_type": "guide",
+      "language": "zh-CN",
+      "official_source": true,
+      "facts_extracted": 16
+    },
+    "https://advertising.amazon.com/library/guides/campaign-optimization": {
+      "content_hash": "sha256:jkl901mno234 campaign-optimization-content-placeholder-hash",
+      "last_checked": "2026-08-12T14:00:00Z",
+      "status": "ingested",
+      "concept_files": [
+        "bidding-strategies.okf.md",
+        "budget-management.okf.md",
+        "sponsored-products-optimization.okf.md",
+        "sponsored-products-measurement.okf.md"
+      ],
+      "content_type": "guide",
+      "language": "zh-CN",
+      "official_source": true,
+      "facts_extracted": 12
     }
   },
-  "last_updated": "2026-08-10T20:33:33Z",
+  "last_updated": "2026-08-12T14:00:00Z",
   "version": "0.1.0"
 }

@@ -46,6 +46,13 @@ Sponsored Products (商品推广) is a cost-per-click (CPC) advertising solution
 - All facts: https://advertising.amazon.com/solutions/products/sponsored-products
 - Fact 9 data source: Amazon research, United States, August to October 2025
 
+## Related Concepts
+
+- [Sponsored Products Targeting and Bidding](concepts/sponsored-products-targeting-bidding.okf.md)
+- [Sponsored Products Budget and Costs](concepts/sponsored-products-budget-costs.okf.md)
+- [Sponsored Products Ad Placement](concepts/sponsored-products-ad-placement.okf.md)
+- [Bidding Strategies](concepts/bidding-strategies.okf.md)
+
 ## Notes
 
 - Content language: Chinese (zh-CN) - extracted from Chinese version of Amazon Ads page

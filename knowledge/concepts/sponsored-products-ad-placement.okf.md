@@ -33,6 +33,12 @@ Sponsored Products ads appear both on Amazon's own platforms and on external web
 
 - All facts: https://advertising.amazon.com/solutions/products/sponsored-products
 
+## Related Concepts
+
+- [Sponsored Products Basics](concepts/sponsored-products-basics.okf.md)
+- [Sponsored Brands Basics](concepts/sponsored-brands-basics.okf.md)
+- [Sponsored Display Basics](concepts/sponsored-display-basics.okf.md)
+
 ## Notes
 
 - Content language: Chinese (zh-CN) - extracted from Chinese version of Amazon Ads page

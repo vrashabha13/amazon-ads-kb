@@ -41,6 +41,12 @@ Sponsored Products requires setting a daily budget and operates on a pay-per-cli
 
 - All facts: https://advertising.amazon.com/solutions/products/sponsored-products
 
+## Related Concepts
+
+- [Sponsored Products Targeting and Bidding](concepts/sponsored-products-targeting-bidding.okf.md)
+- [Sponsored Products Basics](concepts/sponsored-products-basics.okf.md)
+- [Budget Management](concepts/budget-management.okf.md)
+
 ## Notes
 
 - Content language: Chinese (zh-CN) - extracted from Chinese version of Amazon Ads page

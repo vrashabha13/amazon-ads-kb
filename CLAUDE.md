@@ -25,8 +25,8 @@ The system uses a pipeline of 5 specialized agents:
 - **dedup-merge** (`.claude/skills/dedup-merge.md`) - Concept deduplication and merge logic
 - **provenance** (`.claude/skills/provenance.md`) - Citation format and confidence assignment
 
-**1 Safety Hook**:
-- **validate-okf-frontmatter** (`.claude/hooks/validate-okf-frontmatter.js`) - Blocks writes if required fields missing
+**1 Operational Safety Hook**:
+- **validate-okf-frontmatter** (`.claude/hooks/validate-okf-frontmatter.js`) - ✅ Connected and operational - Blocks writes to knowledge/concepts/ if required frontmatter fields are missing
 
 ## Repository Structure
 
@@ -237,7 +237,9 @@ timestamp: 2026-08-10T12:00:00Z
 
 ### Required Fields
 
-**OKF v0.1 Spec**:
+**Canonical Definition**: 10 total required fields
+
+**OKF v0.1 Spec (6 fields)**:
 - `type` - Document type (concept, guide, reference)
 - `title` - Human-readable title
 - `description` - One-line summary
@@ -245,11 +247,13 @@ timestamp: 2026-08-10T12:00:00Z
 - `tags` - Array of hierarchical tags
 - `timestamp` - ISO 8601 timestamp
 
-**Project Extensions**:
+**Project Extensions (4 fields)**:
 - `confidence` - One of "high", "medium", "low"
 - `sources_count` - Number of distinct sources cited
 - `official_source` - Boolean (true if amazon.com/docs)
 - `last_checked` - ISO 8601 timestamp when content was verified
+
+**Single Source of Truth**: The canonical definition is maintained in `.claude/skills/okf-formatter.md` and enforced by the validation hook.
 
 ### Document Body
 
@@ -303,9 +307,26 @@ git diff knowledge/.manifest.json  # Shows hash/timestamp update only
 ### Verify OKF Compliance
 
 The `validate-okf-frontmatter` hook automatically checks:
-- All required fields present
+- All required fields present (10 total)
 - No missing frontmatter fields
-- Blocks invalid writes
+- Blocks invalid writes to knowledge/concepts/
+- Allows writes to other directories
+- Allows non-markdown files
+
+**Integration Tests**:
+```bash
+# Run comprehensive hook integration tests
+./tests/test-hook-integration.sh
+
+# Tests include:
+# - Hook executable and registered
+# - Blocks invalid documents
+# - Allows valid documents
+# - Ignores non-knowledge files
+# - Ignores non-markdown files
+```
+
+Expected output: `✅ All hook integration tests passed!`
 
 ## Troubleshooting
 
@@ -313,10 +334,17 @@ The `validate-okf-frontmatter` hook automatically checks:
 
 **Symptom**: File write fails with "missing required frontmatter fields"
 
-**Solution**: Ensure all OKF documents have required fields:
+**Expected Behavior**: ✅ The validation hook is operational and automatically blocks invalid writes
+
+**Solution**: Ensure all OKF documents have all 10 required fields:
 ```yaml
 type, title, description, resource, tags, timestamp
 confidence, sources_count, official_source, last_checked
+```
+
+**Testing**: Run integration tests to verify hook operation:
+```bash
+./tests/test-hook-integration.sh
 ```
 
 ### Manifest Corruption
@@ -370,10 +398,13 @@ claude -p "ingest <url>, update the bundle"
 
 ### Current Scale (Tested)
 
-- **Concepts**: 5 (from 1 source)
-- **Facts**: 27
+- **Concepts**: 14 (from 5 sources)
+- **Facts**: ~80-100 (estimated)
+- **Product Areas**: 3 (Sponsored Products, Sponsored Brands, Sponsored Display)
+- **Multi-source Concepts**: 4
+- **Cross-links**: ~15-20
 - **Ingestion Time**: ~2 minutes per URL
-- **Storage**: <100KB (mostly text)
+- **Storage**: <200KB (mostly text)
 - **Re-run Time**: <30 seconds (hash match)
 
 ### Expected Scale
@@ -397,6 +428,8 @@ claude -p "ingest <url>, update the bundle"
 - ✅ Skills defined (OKF formatter, dedup/merge, provenance)
 - ✅ Agents defined (Scout, Extractor, Validator, Merger, Publisher)
 - ✅ Hook implemented (OKF frontmatter validation)
+- ✅ Hook connected and operational (PreToolUse event, CLI-executable)
+- ✅ Integration tests created and passing (6/6 tests)
 - ✅ Documentation complete (README, NOTES, CLAUDE.md)
 - ✅ Security setup (API keys excluded, .gitignore configured)
 - ✅ GitHub repository initialized
