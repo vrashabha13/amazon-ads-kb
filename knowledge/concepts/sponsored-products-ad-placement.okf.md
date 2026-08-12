@@ -11,6 +11,8 @@ sources_count: 1
 official_source: true
 last_checked: 2026-08-10T20:26:36Z
 timestamp: 2026-08-10T20:26:36Z
+fact_history: {}
+deprecated_facts: []
 ---
 
 # Sponsored Products Ad Placement
@@ -21,13 +23,13 @@ Sponsored Products ads appear both on Amazon's own platforms and on external web
 
 ## Facts
 
-1. **Amazon On-Site Placement**: Ads appear in shopping search results (top, beside, or middle) and on product detail pages.
+1. **Amazon On-Site Placement** [fact-b9738cb0-74836564]: Ads appear in shopping search results (top, beside, or middle) and on product detail pages.
 
-2. **Amazon Off-Site Placement**: Ads appear on other Amazon-owned websites and third-party websites, extending reach beyond Amazon's core platform.
+2. **Amazon Off-Site Placement** [fact-b9738cb0-497f2948]: Ads appear on other Amazon-owned websites and third-party websites, extending reach beyond Amazon's core platform.
 
-3. **Device Support**: Off-site placement supports desktop devices, mobile devices, and tablets across browsers and application experiences.
+3. **Device Support** [fact-b9738cb0-4d2e6a51]: Off-site placement supports desktop devices, mobile devices, and tablets across browsers and application experiences.
 
-4. **Cross-Platform Presence**: The advertising format maintains consistent presentation across desktop browsers, mobile browsers, and Amazon mobile applications.
+4. **Cross-Platform Presence** [fact-b9738cb0-67169bcc]: The advertising format maintains consistent presentation across desktop browsers, mobile browsers, and Amazon mobile applications.
 
 ## Sources
 

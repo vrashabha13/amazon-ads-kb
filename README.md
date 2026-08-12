@@ -63,6 +63,30 @@ The pipeline executes all five stages sequentially:
 4. **Merger** - Merges concepts and resolves conflicts
 5. **Publisher** - Writes OKF files and updates indices
 
+## 📊 Current Status
+
+**Functional Components:**
+- ✅ 5-stage pipeline architecture (Scout → Extractor → Validator → Merger → Publisher)
+- ✅ Hash-based change detection for idempotency
+- ✅ Individual agent testing capability
+- ✅ Hook system (6/6 tests passing)
+- ✅ OKF frontmatter validation (10 required fields)
+- ✅ Multi-language support (English, Chinese)
+
+**Known Issues:**
+- ⚠️ **Fact lifecycle management**: Infrastructure exists but execution gap - `fact_history` and `deprecated_facts` fields remain empty despite source change detection
+- ⚠️ **Content type validation**: Documentation claims unsupported types are rejected, but no validation logic exists
+- ⚠️ **Two-run idempotency test**: Fixed directory handling bug, test framework operational
+
+**Test Coverage:** 39/42 tests passing (93%)
+- Pipeline tests: 12/12 ✅
+- Idempotency tests: 12/12 ✅
+- Knowledge quality tests: 9/9 ✅
+- Hook integration tests: 6/6 ✅
+- Two-run tests: 0/3 ⚠️ (test framework fixed, awaiting source change scenario)
+
+**Overall Status**: Core pipeline functional for initial ingestion, working on fact lifecycle execution gap
+
 ## 📁 Repository Structure
 
 ```
@@ -216,13 +240,20 @@ The system handles diverse Amazon Ads content:
 - **How-to Guides** (advertising.amazon.com/library/guides/*)
 - **Technical Documentation** (advertising.amazon.com/API/docs/*)
 
-### Not Supported
+### Content Type Support
 
-- PDF documents
-- CSV files
-- XML files
-- Binary formats
-- Local file uploads (web URLs only)
+**Currently Processed:**
+- **HTML/Markdown from web sources**: Fetched via WebFetch/webReader, converted to Markdown
+- **JSON**: System-generated intermediate format for extracted facts
+- **Multi-language**: Processes content in English and Chinese
+
+**Content Type Classification:**
+The system automatically classifies sources by URL pattern for categorization:
+- `/solutions/products/*` → classified as "product-page"
+- `/library/guides/*` → classified as "guide"
+- `/API/docs/*` → classified as "technical-docs"
+
+**Note**: The system fetches web content and attempts to process HTML/Markdown. Other file types (PDF, CSV, XML) are not explicitly validated or rejected - the pipeline will attempt to process them but may produce unpredictable results.
 
 ## 📈 Statistics
 
@@ -237,16 +268,25 @@ Track progress via `knowledge/index.md`:
 
 ### Running Tests
 
-The system includes comprehensive test coverage:
+The system includes test coverage with some known issues:
 
 **Pipeline Tests:**
 ```bash
-npm test                              # Pipeline execution (12 tests)
-npm run test:idempotency              # Content normalization (12 tests)
-npm run test:two-run                  # Idempotency proof (3 tests)
-npm run test:quality                  # Knowledge bundle quality (9 tests)
-npm run test:hook                     # Hook integration (6 tests)
+npm test                              # Pipeline execution (12/12 passing ✅)
+npm run test:idempotency              # Content normalization (12/12 passing ✅)
+npm run test:two-run                  # Idempotency proof (0/3 passing ⚠️ - framework fixed, needs source change scenario)
+npm run test:quality                  # Knowledge bundle quality (9/9 passing ✅)
+npm run test:hook                     # Hook integration (6/6 passing ✅)
 ```
+
+**Current Test Status: 39/42 passing (93%)**
+
+**Test Coverage:**
+- Pipeline structure and data flow ✅
+- Content normalization and hash determinism ✅
+- Two-consecutive-run idempotency (framework fixed, awaiting test scenario) ⚠️
+- OKF frontmatter validation ✅
+- Knowledge bundle quality requirements ✅
 
 **Test Coverage:**
 - Pipeline structure and data flow

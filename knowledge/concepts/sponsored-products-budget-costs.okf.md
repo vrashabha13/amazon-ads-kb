@@ -11,6 +11,8 @@ sources_count: 1
 official_source: true
 last_checked: 2026-08-10T20:26:36Z
 timestamp: 2026-08-10T20:26:36Z
+fact_history: {}
+deprecated_facts: []
 ---
 
 # Sponsored Products Budget and Costs
@@ -21,21 +23,21 @@ Sponsored Products requires setting a daily budget and operates on a pay-per-cli
 
 ## Facts
 
-1. **Daily Budget Requirement**: Advertisers must set a daily budget for Sponsored Products campaigns, representing the amount willing to spend each calendar day.
+1. **Daily Budget Requirement** [fact-b9738cb0-709c1903]: Advertisers must set a daily budget for Sponsored Products campaigns, representing the amount willing to spend each calendar day.
 
-2. **Budget Definition**: Daily budget is the amount willing to spend for each day in a calendar month. For example, a $100 daily budget allows up to $3,100 of clicks in a 31-day month.
+2. **Budget Definition** [fact-b9738cb0-43923c94]: Daily budget is the amount willing to spend for each day in a calendar month. For example, a $100 daily budget allows up to $3,100 of clicks in a 31-day month.
 
-3. **Variable Consumption Rate**: Daily budget consumption is not fixed and varies based on customer interest and ad performance.
+3. **Variable Consumption Rate** [fact-b9738cb0-3812553d]: Daily budget consumption is not fixed and varies based on customer interest and ad performance.
 
-4. **Budget Exhaustion Risk**: If many customers are interested in promoted products and the daily budget is set low, the budget may be exhausted in minutes.
+4. **Budget Exhaustion Risk** [fact-b9738cb0-914621e1]: If many customers are interested in promoted products and the daily budget is set low, the budget may be exhausted in minutes.
 
-5. **Cost Control**: Total campaign cost will never exceed the set budget for the campaign duration, providing predictable maximum costs.
+5. **Cost Control** [fact-b9738cb0-4ce2fb83]: Total campaign cost will never exceed the set budget for the campaign duration, providing predictable maximum costs.
 
-6. **Budget Flexibility**: Daily budget can be increased or decreased after campaign launch, allowing ongoing optimization.
+6. **Budget Flexibility** [fact-b9738cb0-946daba5]: Daily budget can be increased or decreased after campaign launch, allowing ongoing optimization.
 
-7. **Pay-Per-Click Model**: Advertisers only pay when customers click their ads, not for impressions.
+7. **Pay-Per-Click Model** [fact-b9738cb0-eb6685e3]: Advertisers only pay when customers click their ads, not for impressions.
 
-8. **Total Spend Control**: Advertisers maintain control over total desired spend, with final costs never exceeding the set amount for the campaign duration.
+8. **Total Spend Control** [fact-b9738cb0-40e66c63]: Advertisers maintain control over total desired spend, with final costs never exceeding the set amount for the campaign duration.
 
 ## Sources
 

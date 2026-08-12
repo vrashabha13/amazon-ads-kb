@@ -64,17 +64,35 @@ Process Validator's source change detection:
 
 #### 4a. Remove Obsolete Facts
 For each fact in `facts_to_remove`:
-1. Locate the fact in its concept file (by `fact_id` or statement)
-2. Remove the fact from the concept's fact list
-3. Add to `deprecated_facts` in frontmatter for tracking
+1. Locate the fact in its concept file using `fact_id` (if available) or statement
+2. Remove the fact from the concept's fact list (including its fact ID)
+3. Add to `deprecated_facts` in frontmatter for tracking:
+   ```yaml
+   deprecated_facts:
+     - fact_id: "fact-abc123-xyz789"
+       statement: "Maximum 10 products per ad"
+       removed_at: "2026-08-12T14:00:00Z"
+       reason: "Source updated, fact no longer present"
+   ```
 4. Document removal in notes with reason and timestamp
 
 #### 4b. Update Superseded Facts
 For each entry in `supersedes` map:
-1. Locate old fact (value) in its concept file
-2. Replace with new fact (key)
-3. Add to `fact_history` in frontmatter showing lineage
-4. Document update in notes with old and new values
+1. Locate old fact (value) in its concept file using `fact_id`
+2. Replace with new fact (key) including its new fact ID
+3. Add to `fact_history` in frontmatter showing lineage:
+   ```yaml
+   fact_history:
+     fact-new50-new51:
+       current_statement: "Maximum 50 products per ad"
+       current_fact_id: "fact-abc12350-xyz78950"
+       supersedes: "fact-abc12310-xyz78910"
+       previous_statement: "Maximum 10 products per ad"
+       previous_fact_id: "fact-abc12310-xyz78910"
+       updated_at: "2026-08-12T14:00:00Z"
+       reason: "Same source updated the value"
+   ```
+4. Document update in notes with old and new values, referencing fact IDs
 
 #### 4c. Add New Facts
 For each fact with `status: "new"`:
@@ -100,10 +118,29 @@ Follow okf-formatter skill:
 - Add `deprecated_facts` list if any facts removed
 - Add `fact_history` object if any facts updated
 
-### Step 7: Write Document
-Follow okf-formatter skill structure:
+### Step 7: Write Document with Fact IDs
+Follow okf-formatter skill structure with fact ID persistence:
+
+#### Fact Format with IDs
+When writing facts to the concept body, include fact IDs for tracking:
+```markdown
+## Facts
+
+1. **Fact Title** [fact-xxxxxxxx-yyyyyyyy]: Factual statement with complete information.
+2. **Another Title** [fact-abcdefgh-12345678]: Another factual statement.
+```
+
+**Fact ID Format**:
+- Use fact IDs from Validator's `fact_analysis` output (pre-computed by pipeline)
+- Format: `**Title** [fact-id]: statement`
+- Enables referencing in `fact_history` and `deprecated_facts`
+- Maintains human readability while supporting programmatic tracking
+
+**IMPORTANT**: Fact IDs are pre-computed by the pipeline invoker and provided in your input data. Never generate fact IDs yourself - always use the fact_id values provided in the input.
+
+#### Document Structure
 - Overview
-- Facts (numbered list, with current facts only)
+- Facts (numbered list with fact IDs, current facts only)
 - Sources (citations)
 - Notes (merge notes, conflicts, updates, removals)
 
@@ -198,3 +235,22 @@ If merge fails:
   "error": "Unable to resolve conflicts automatically"
 }
 ```
+
+## Validation Guidance
+
+**Frontmatter Completeness Checks**:
+- Before merging concepts, verify all 10 required OKF frontmatter fields are present
+- Check: `type`, `title`, `description`, `resource`, `tags`, `timestamp`, `confidence`, `sources_count`, `official_source`, `last_checked`
+- If merging creates incomplete frontmatter, flag for manual review
+
+**Merged Concept Quality**:
+- Ensure merged concepts maintain all required fields from source concepts
+- Update `sources_count` to reflect total sources after merge
+- Adjust `confidence` level based on merged sources (use lowest if conflicting)
+- Verify `official_source` status is correct after merge
+- Update `last_checked` timestamp after merge operations
+
+**Conflict Resolution Validation**:
+- Verify that resolved conflicts are documented in merge notes
+- Ensure deprecated_facts and fact_history fields are properly formatted if used
+- Check that supersedence relationships are correctly established

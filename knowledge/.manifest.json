@@ -1,8 +1,8 @@
 {
   "sources": {
     "https://advertising.amazon.com/solutions/products/sponsored-products": {
-      "content_hash": "sha256:89e25f456aad3a2921b372ac0a40482662535b55bf3de8db6991dc64aa00924f",
-      "last_checked": "2026-08-10T20:33:33Z",
+      "content_hash": "sha256:3922c150f95eec40d3856735cc86605e7eee961f2be38d331c504bb8ed57a304",
+      "last_checked": "2026-08-12T18:00:00Z",
       "status": "ingested",
       "concept_files": [
         "sponsored-products-basics.okf.md",
@@ -19,8 +19,8 @@
       "language": "zh-CN",
       "official_source": true,
       "facts_extracted": 27,
-      "previous_hash": "sha256:21a070a595e799ad2446e82d57792267462be5611427c0f88baa0ebf50383c03",
-      "reingestion_count": 1,
+      "previous_hash": "sha256:89e25f456aad3a2921b372ac0a40482662535b55bf3de8db6991dc64aa00924f",
+      "reingestion_count": 2,
       "content_unchanged_semantically": true
     },
     "https://advertising.amazon.com/solutions/products/sponsored-brands": {
@@ -79,11 +79,21 @@
       "language": "en-US",
       "official_source": true,
       "facts_extracted": 5
+    },
+    "/Users/vrashabhanilajagi/Desktop/amazon-ads-kb/tests/fixtures/test-source.html": {
+      "content_hash": "sha256:e179dba39289c2aaf4491119728faddec2c0759487abd42183cd50e4509de750",
+      "last_checked": "2026-08-12T18:30:00Z",
+      "status": "ingested",
+      "concept_files": [],
+      "content_type": "product-page",
+      "language": "en-US",
+      "official_source": false,
+      "facts_extracted": 0
     }
   },
-  "last_updated": "2026-08-12T17:58:00Z",
+  "last_updated": "2026-08-12T18:00:00Z",
   "version": "0.1.0",
-  "total_sources": 5,
+  "total_sources": 6,
   "total_facts_extracted": 70,
   "pipeline_status": "all_sources_processed"
 }

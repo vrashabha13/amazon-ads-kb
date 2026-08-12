@@ -11,6 +11,8 @@ sources_count: 1
 official_source: true
 last_checked: 2026-08-10T20:26:36Z
 timestamp: 2026-08-10T20:26:36Z
+fact_history: {}
+deprecated_facts: []
 ---
 
 # Sponsored Products Eligibility
@@ -21,15 +23,15 @@ Sponsored Products is available to specific seller types and product categories,
 
 ## Facts
 
-1. **Eligible Seller Types**: Sponsored Products is available for professional sellers, vendors, book vendors, Kindle Direct Publishing (KDP) authors, and service providers.
+1. **Eligible Seller Types** [fact-b9738cb0-3dbd1bd9]: Sponsored Products is available for professional sellers, vendors, book vendors, Kindle Direct Publishing (KDP) authors, and service providers.
 
-2. **Product Requirements**: Promoted products must belong to one or more eligible categories and meet preferred product criteria.
+2. **Product Requirements** [fact-b9738cb0-8d7d8fde]: Promoted products must belong to one or more eligible categories and meet preferred product criteria.
 
-3. **Category Restrictions**: Adult products, used goods, refurbished goods, and products in closed categories are not eligible for Sponsored Products promotion.
+3. **Category Restrictions** [fact-b9738cb0-65a30303]: Adult products, used goods, refurbished goods, and products in closed categories are not eligible for Sponsored Products promotion.
 
-4. **European Availability**: Sponsored Products is available in multiple European countries: Belgium (BE), Germany (DE), Spain (ES), France (FR), Ireland (IE), Italy (IT), Netherlands (NL), Poland (PL), Sweden (SE), Turkey (TR), and United Kingdom (UK).
+4. **European Availability** [fact-b9738cb0-d8a63b99]: Sponsored Products is available in multiple European countries: Belgium (BE), Germany (DE), Spain (ES), France (FR), Ireland (IE), Italy (IT), Netherlands (NL), Poland (PL), Sweden (SE), Turkey (TR), and United Kingdom (UK).
 
-5. **Policy Reference**: Advertisers should refer to Sponsored Products and Sponsored Brands creative acceptance policies for complete lists of eligible and prohibited categories.
+5. **Policy Reference** [fact-b9738cb0-70fed32f]: Advertisers should refer to Sponsored Products and Sponsored Brands creative acceptance policies for complete lists of eligible and prohibited categories.
 
 ## Sources
 

@@ -370,6 +370,48 @@ Execute your agent responsibilities now and return the JSON response.
   }
 
   /**
+   * Pre-process input data for specific agents
+   * @param {string} agentName - Name of the agent
+   * @param {Object} inputData - Input data for the agent
+   * @returns {Object} Enhanced input data with pre-computed values
+   */
+  preprocessInput(agentName, inputData) {
+    let enhancedData = inputData;
+
+    // Pre-compute fact IDs for Validator agent
+    if (agentName === 'validator' && inputData.facts && Array.isArray(inputData.facts)) {
+      const { generateFactId } = require('./fact-id.js');
+
+      enhancedData = {
+        ...inputData,
+        facts: inputData.facts.map(fact => ({
+          ...fact,
+          fact_id: generateFactId(fact.source_url, fact.statement)
+        }))
+      };
+
+      this.log('AGENT-INVOKER', `Pre-computed ${enhancedData.facts.length} fact IDs for Validator`, colors.cyan);
+    }
+
+    // Pre-compute fact IDs for Merger agent if processing facts
+    if (agentName === 'merger' && inputData.fact_analysis && Array.isArray(inputData.fact_analysis)) {
+      const { generateFactId } = require('./fact-id.js');
+
+      enhancedData = {
+        ...inputData,
+        fact_analysis: inputData.fact_analysis.map(fact => ({
+          ...fact,
+          fact_id: fact.fact_id || generateFactId(fact.source_url || fact.resource, fact.statement)
+        }))
+      };
+
+      this.log('AGENT-INVOKER', `Enhanced ${enhancedData.fact_analysis.length} fact entries for Merger`, colors.cyan);
+    }
+
+    return enhancedData;
+  }
+
+  /**
    * Invoke agent (single attempt)
    * @param {string} agentName - Name of the agent
    * @param {Object} inputData - Input data for the agent
@@ -384,8 +426,11 @@ Execute your agent responsibilities now and return the JSON response.
       // Load agent definition
       const agentDefinition = this.loadAgentDefinition(agentName);
 
+      // Pre-process input data for specific agents
+      const enhancedData = this.preprocessInput(agentName, inputData);
+
       // Prepare prompt
-      const prompt = this.prepareAgentPrompt(agentName, agentDefinition, inputData);
+      const prompt = this.prepareAgentPrompt(agentName, agentDefinition, enhancedData);
 
       // Make CLI call
       const cliResponse = await this.callClaudeCLI(prompt);

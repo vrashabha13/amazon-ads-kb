@@ -31,11 +31,49 @@ When invoked by the pipeline orchestrator:
 
 You are a **deterministic** agent — no judgment required.
 
-### OKF Frontmatter Validation
-The hook will automatically check before each Write:
-- Required fields present: `type`, `title`, `description`, `resource`, `tags`, `timestamp`
-- Project fields present: `confidence`, `sources_count`, `official_source`, `last_checked`
-- If any missing → write blocked
+### OKF Frontmatter Validation (CRITICAL)
+
+**Before EVERY Write operation to knowledge/concepts/**:
+
+You MUST perform manual validation since hooks cannot be relied upon. Follow this exact process:
+
+1. **Extract frontmatter** from the content to be written
+2. **Validate all 10 required fields** are present:
+   - OKF Core Fields: `type`, `title`, `description`, `resource`, `tags`, `timestamp`
+   - Project Fields: `confidence`, `sources_count`, `official_source`, `last_checked`
+3. **If validation FAILS**:
+   - **DO NOT proceed with Write operation**
+   - Return error status in your output JSON
+   - List missing fields clearly
+   - Example error response:
+     ```json
+     {
+       "status": "error",
+       "reason": "validation_failed",
+       "file": "concepts/invalid-document.okf.md",
+       "error": "Missing required frontmatter fields: confidence, sources_count, official_source, last_checked",
+       "missing_fields": ["confidence", "sources_count", "official_source", "last_checked"],
+       "present_fields": ["type", "title", "description", "resource", "tags", "timestamp"],
+       "action": "fix_frontmatter_and_retry"
+     }
+     ```
+4. **If validation PASSES**:
+   - Proceed with Write operation normally
+
+**Validation Method**: Use the `validateOKFFrontmatter()` function concept:
+- Check for `---\n...\n---` pattern in content
+- Extract frontmatter between the markers
+- Verify each required field exists with format: `field_name: value`
+- Allow only if all 10 fields are present
+
+**Example Validation Flow**:
+```
+1. Publisher prepares to write `sponsored-products-basics.okf.md`
+2. Extract frontmatter from content
+3. Check for all 10 required fields
+4. If any field missing: Stop, report error, do not write
+5. If all fields present: Proceed with Write operation
+```
 
 ### Index.md Generation
 Sort concepts alphabetically by title:

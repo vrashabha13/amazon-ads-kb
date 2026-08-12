@@ -11,6 +11,8 @@ sources_count: 1
 official_source: true
 last_checked: 2026-08-12T14:00:00Z
 timestamp: 2026-08-12T14:00:00Z
+fact_history: {}
+deprecated_facts: []
 ---
 
 # Sponsored Display Audience Targeting
@@ -21,21 +23,21 @@ Sponsored Display provides sophisticated audience targeting capabilities that le
 
 ## Facts
 
-1. **View Retargeting**: Campaigns can target customers who viewed specific products within a defined time window (typically 30 days), helping re-engage interested shoppers.
+1. **View Retargeting** [fact-28203088-f11adad2]: Campaigns can target customers who viewed specific products within a defined time window (typically 30 days), helping re-engage interested shoppers.
 
-2. **Category Retargeting**: Advertisers can target customers who viewed products in specific categories, enabling broader retargeting for product lines or collections.
+2. **Category Retargeting** [fact-28203088-14259dc1]: Advertisers can target customers who viewed products in specific categories, enabling broader retargeting for product lines or collections.
 
-3. **Search Retargeting**: This option targets customers who searched for specific keywords, capturing purchase intent even when they didn't view specific products.
+3. **Search Retargeting** [fact-28203088-b964a394]: This option targets customers who searched for specific keywords, capturing purchase intent even when they didn't view specific products.
 
-4. **Interest-Based Targeting**: Campaigns can target audiences based on lifestyle interests, shopping categories they frequently browse, and product affinities demonstrated over time.
+4. **Interest-Based Targeting** [fact-28203088-1c13ed94]: Campaigns can target audiences based on lifestyle interests, shopping categories they frequently browse, and product affinities demonstrated over time.
 
-5. **Demographic Targeting**: Sponsored Display supports demographic targeting including household income, education level, parental status, and geographic location.
+5. **Demographic Targeting** [fact-28203088-304c1ceb]: Sponsored Display supports demographic targeting including household income, education level, parental status, and geographic location.
 
-6. **Lookalike Audiences**: Advertisers can create lookalike audiences based on their customer email lists or existing customer segments to find similar prospects.
+6. **Lookalike Audiences** [fact-28203088-54dace56]: Advertisers can create lookalike audiences based on their customer email lists or existing customer segments to find similar prospects.
 
-7. **Audience Exclusions**: Campaigns can exclude audiences who recently purchased products to avoid wasted spend on converted customers.
+7. **Audience Exclusions** [fact-28203088-c949d1dc]: Campaigns can exclude audiences who recently purchased products to avoid wasted spend on converted customers.
 
-8. **Audience Segments**: Amazon provides pre-built audience segments such as "auto-intenders" or "home-improvers" that group customers with demonstrated purchase intent in specific categories.
+8. **Audience Segments** [fact-28203088-0cad0ee3]: Amazon provides pre-built audience segments such as "auto-intenders" or "home-improvers" that group customers with demonstrated purchase intent in specific categories.
 
 ## Sources
 

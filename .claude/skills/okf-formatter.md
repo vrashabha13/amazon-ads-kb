@@ -44,10 +44,19 @@ deprecated_facts:
 fact_history:
   fact-new50-new51:
     current_statement: "Maximum 50 products per ad"
-    supersedes: "fact-abc123-xyz789"
+    current_fact_id: "fact-abc12350-xyz78950"
+    supersedes: "fact-abc12310-xyz78910"
     previous_statement: "Maximum 10 products per ad"
+    previous_fact_id: "fact-abc12310-xyz78910"
     updated_at: "2026-08-11T00:00:00Z"
+    reason: "Source updated, value changed from 10 to 50"
 ```
+
+**Key fields:**
+- `current_fact_id`: Fact ID of the new (current) version
+- `previous_fact_id`: Fact ID of the old (superseded) version
+- `supersedes`: Maps new fact ID to old fact ID
+- `reason`: Explanation of why the change occurred
 
 ## Tag Naming Conventions
 
@@ -91,9 +100,9 @@ timestamp: 2026-08-10T12:00:00Z
 Sponsored Products use keyword-based and product-targeted bidding strategies.
 
 ## Facts
-1. Default bidding strategy is "dynamic bids - down only"
-2. Manual bids override automatic bidding when set
-3. Bids are managed at the ad group or keyword level
+1. **Default Bidding Strategy** [fact-e179dba1-5a6c3b8a]: Default bidding strategy is "dynamic bids - down only"
+2. **Manual Bid Override** [fact-e179dba2-7b8d4c9b]: Manual bids override automatic bidding when set
+3. **Bid Management Level** [fact-e179dba3-9e0f5d1c]: Bids are managed at the ad group or keyword level
 
 ## Sources
 - Facts 1-2: https://advertising.amazon.com/library/guides/sponsored-products-bidding
@@ -136,8 +145,8 @@ merge_notes:
 Current limits and quotas for Amazon Sponsored Products campaigns.
 
 ## Facts
-1. Maximum 50 products per ad (updated from 10 on 2026-08-11)
-2. Maximum 10 campaigns per account
+1. **Maximum Products per Ad** [fact-abc12350-xyz78950]: Maximum 50 products per ad
+2. **Maximum Campaigns** [fact-def45678-uvw01234]: Maximum 10 campaigns per account
 
 ## Sources
 - Fact 1: https://advertising.amazon.com/solutions/products/sponsored-products (updated)

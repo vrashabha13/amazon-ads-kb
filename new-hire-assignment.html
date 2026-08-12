@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retap.ai — New Hire Assignment: Knowledge Acquisition System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #FAFAFA;
+            --text: #1A1A1A;
+            --text-muted: #666666;
+            --text-light: #888899;
+            --accent-primary: #6f77f4;
+            --accent-secondary: #CC5555;
+            --accent-success: #0a8050;
+            --border: #E0E0E0;
+            --card-bg: #FFFFFF;
+            --code-bg: #FCFCFD;
+            --mono: 'SF Mono', SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html, body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.5;
+            overflow: hidden;
+        }
+
+        /* ===== SLIDE CONTAINER ===== */
+        .slides-container { width: 100vw; height: 100vh; position: relative; }
+
+        .slide {
+            width: 100vw; height: 100vh;
+            display: none; flex-direction: column;
+            padding: 2.5vh 5vw 6vw 5vw;
+            position: absolute; top: 0; left: 0;
+            overflow: hidden;
+        }
+        .slide.active { display: flex; }
+
+        /* ===== COMMON HEADER ===== */
+        .header { margin-bottom: 2rem; }
+        .tag {
+            font-size: 0.75rem; font-weight: 500; color: var(--text-muted);
+            text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem;
+        }
+        .title {
+            font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 700;
+            line-height: 1.2; letter-spacing: -0.02em;
+        }
+        .title + .subtitle { margin-top: 0.75rem; }
+        .subtitle {
+            font-size: clamp(1.15rem, 1.7vw, 1.45rem); font-weight: 500;
+            color: var(--accent-primary); letter-spacing: 0.01em; line-height: 1.45;
+        }
+        .header-note {
+            font-size: clamp(0.95rem, 1.1vw, 1.1rem); color: var(--text-muted);
+            margin-top: 0.85rem; max-width: 70ch;
+        }
+
+        /* ===== CONTENT AREA ===== */
+        .content { flex: 1; display: flex; align-items: center; }
+
+        /* ===== BOTTOM BAR ===== */
+        .bottom-line { position: absolute; bottom: 4vw; left: 5vw; right: 5vw; height: 1px; background: var(--border); }
+        .bottom-bar { position: absolute; bottom: 2vw; left: 5vw; }
+        .bottom-bar img { height: clamp(20px, 2vw, 28px); width: auto; }
+
+        /* ===== NAVIGATION ===== */
+        .nav-hint { position: fixed; bottom: 2vw; right: 5vw; font-size: 0.7rem; color: var(--text-muted); opacity: 0.6; }
+        .slide-dots { position: fixed; bottom: 2vw; left: 50%; transform: translateX(-50%); display: flex; gap: 0.4rem; max-width: 70vw; flex-wrap: wrap; justify-content: center; }
+        .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--border); cursor: pointer; transition: background 0.2s ease; }
+        .dot.active { background: var(--accent-primary); }
+        .dot:hover { background: var(--text-muted); }
+
+        /* ===== ANIMATION ===== */
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .slide.active .animate-1 { animation: fadeInUp 0.6s ease forwards; animation-delay: 0.1s; opacity: 0; }
+        .slide.active .animate-2 { animation: fadeInUp 0.6s ease forwards; animation-delay: 0.2s; opacity: 0; }
+        .slide.active .animate-3 { animation: fadeInUp 0.6s ease forwards; animation-delay: 0.3s; opacity: 0; }
+        .slide.active .animate-4 { animation: fadeInUp 0.6s ease forwards; animation-delay: 0.4s; opacity: 0; }
+        .slide.active .animate-5 { animation: fadeInUp 0.6s ease forwards; animation-delay: 0.5s; opacity: 0; }
+        @media (prefers-reduced-motion: reduce) {
+            .slide.active .animate-1, .slide.active .animate-2, .slide.active .animate-3,
+            .slide.active .animate-4, .slide.active .animate-5 { animation: none; opacity: 1; }
+        }
+
+        /* ===== PAGE NUMBER ===== */
+        .page-num { position: fixed; bottom: 2vw; right: 5vw; font-size: 0.72rem; color: var(--text-muted); opacity: 0.7; font-variant-numeric: tabular-nums; letter-spacing: 0.04em; }
+
+        /* ===== PRINT (one slide per page, 16:9) ===== */
+        @media print {
+            html, body { height: auto; overflow: visible; background: #fff; }
+            .slides-container { width: 100%; height: auto; position: static; }
+            .slide {
+                display: flex !important; position: relative !important;
+                top: auto; left: auto; width: 100%; height: 100vh;
+                page-break-after: always; break-after: page; overflow: hidden;
+            }
+            .slide:last-child { page-break-after: auto; break-after: auto; }
+            .slide-dots, .nav-hint { display: none; }
+            .page-num { opacity: 1; }
+        }
+
+        /* ============================================================
+           SHARED CONTENT COMPONENTS
+           ============================================================ */
+        .lead {
+            font-size: clamp(1.05rem, 1.25vw, 1.25rem); color: var(--text);
+            line-height: 1.65; max-width: 62ch;
+        }
+        .lead .muted { color: var(--text-muted); }
+        .lead strong { font-weight: 600; }
+
+        .grid { display: grid; gap: 1.25rem; width: 100%; }
+        .grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+        .grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+        .grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+
+        .info-card {
+            background: var(--card-bg); border: 1px solid var(--border);
+            border-radius: 12px; padding: 1.6rem; display: flex; flex-direction: column;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.03); transition: all 0.2s;
+        }
+        .info-card:hover { border-color: var(--accent-primary); transform: translateY(-3px); box-shadow: 0 10px 28px rgba(111,119,244,0.08); }
+        .info-card .ic-icon {
+            width: 42px; height: 42px; border-radius: 10px; margin-bottom: 0.9rem;
+            background: rgba(111,119,244,0.08); color: var(--accent-primary);
+            display: flex; align-items: center; justify-content: center;
+        }
+        .info-card .ic-icon svg { width: 22px; height: 22px; }
+        .info-card h3 { font-size: clamp(1rem, 1.15vw, 1.15rem); font-weight: 600; margin-bottom: 0.4rem; }
+        .info-card p { font-size: clamp(0.88rem, 0.98vw, 0.98rem); color: var(--text-muted); line-height: 1.6; }
+        .info-card .ic-meta { margin-top: 0.8rem; font-size: clamp(0.78rem, 0.85vw, 0.85rem); color: var(--text-light); }
+        .info-card .ic-meta b { color: var(--accent-primary); font-weight: 600; }
+        .info-card ul.bullets { gap: 0.35rem; margin-top: 0.65rem; }
+        .info-card ul.bullets li { font-size: clamp(0.8rem, 0.88vw, 0.88rem); color: var(--text-muted); padding-left: 1.1rem; line-height: 1.45; }
+        .info-card ul.bullets li::before { top: 0.55rem; width: 5px; height: 5px; }
+
+        /* code / file-tree block */
+        .code-block {
+            background: var(--code-bg); border: 1px solid var(--border);
+            border-left: 3px solid var(--accent-primary); border-radius: 8px;
+            padding: 1rem 1.2rem; font-family: var(--mono);
+            font-size: clamp(0.72rem, 0.82vw, 0.82rem); line-height: 1.7;
+            color: #2a2a33; white-space: pre; overflow-x: auto;
+        }
+        .code-block .c-key { color: #6f77f4; }
+        .code-block .c-str { color: #0a8050; }
+        .code-block .c-mute { color: #9aa0aa; }
+        .code-block .c-dir { color: #1A1A1A; font-weight: 600; }
+        .code-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.04); overflow: hidden; }
+        .code-card .cc-head { padding: 0.6rem 1.1rem; border-bottom: 1px solid var(--border); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); display: flex; align-items: center; gap: 0.5rem; }
+        .code-card .cc-head .dotrow { display: flex; gap: 0.3rem; }
+        .code-card .cc-head .dotrow i { width: 9px; height: 9px; border-radius: 50%; background: var(--border); display: inline-block; }
+        .code-card .code-block { border: none; border-radius: 0; }
+
+        /* chips */
+        .chip { display: inline-flex; align-items: center; gap: 0.3rem; padding: 0.18rem 0.55rem; border-radius: 100px; font-size: clamp(0.6rem, 0.68vw, 0.66rem); font-weight: 500; line-height: 1.4; }
+        .chip.req { background: rgba(111,119,244,0.1); color: var(--accent-primary); }
+        .chip.opt { background: #ECECEF; color: #8a8a93; }
+        .chip.git { background: rgba(204,85,85,0.08); color: var(--accent-secondary); }
+        .chip.coral { background: rgba(204,85,85,0.08); color: var(--accent-secondary); }
+        .chip.cmt { background: #FFFFFF; color: var(--text-muted); border: 1px solid var(--border); }
+
+        /* bullet list */
+        ul.bullets { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+        ul.bullets li { position: relative; padding-left: 1.5rem; font-size: clamp(0.92rem, 1.02vw, 1.02rem); color: var(--text); line-height: 1.55; }
+        ul.bullets li::before { content: ''; position: absolute; left: 0.1rem; top: 0.62rem; width: 7px; height: 7px; border-radius: 50%; background: var(--accent-primary); }
+        ul.bullets li .muted { color: var(--text-muted); }
+        ul.bullets li b { font-weight: 600; }
+
+        /* horizontal step flow */
+        .stepflow { display: flex; align-items: stretch; gap: 0; width: 100%; }
+        .step-card { flex: 1; background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 1.15rem 1.2rem; display: flex; flex-direction: column; gap: 0.45rem; box-shadow: 0 4px 16px rgba(0,0,0,0.03); }
+        .step-card .sc-num { width: 30px; height: 30px; border-radius: 50%; background: var(--accent-primary); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 600; }
+        .step-card .sc-title { font-size: clamp(0.92rem, 1.05vw, 1.02rem); font-weight: 600; }
+        .step-card .sc-desc { font-size: clamp(0.78rem, 0.86vw, 0.85rem); color: var(--text-muted); line-height: 1.5; }
+        .step-arrow { display: flex; align-items: center; color: var(--border); padding: 0 0.25rem; }
+        .step-arrow svg { width: 18px; height: 18px; }
+
+        /* ============================================================
+           SLIDE: TITLE
+           ============================================================ */
+        .slide-title .content { display: flex; align-items: center; justify-content: space-between; gap: 4vw; width: 100%; }
+        .slide-title .text-column { flex: 0 0 52%; max-width: 600px; }
+        .slide-title .intro-logo { height: clamp(34px, 3.6vw, 46px); width: auto; margin-bottom: 1.8rem; }
+        .slide-title .intro-title { font-size: clamp(2.2rem, 4vw, 3.4rem); font-weight: 700; line-height: 1.12; letter-spacing: -0.03em; margin-bottom: 1.1rem; }
+        .slide-title .intro-subtitle { font-size: clamp(1.1rem, 1.5vw, 1.3rem); font-weight: 400; color: var(--text-muted); line-height: 1.6; max-width: 480px; }
+        .slide-title .intro-subtitle strong { color: var(--text); font-weight: 500; }
+        .slide-title .visual-column { flex: 1; display: flex; justify-content: center; align-items: center; }
+
+        /* ============================================================
+           SLIDE: SECTION DIVIDER
+           ============================================================ */
+        .slide-divider .content { flex-direction: column; align-items: flex-start; justify-content: center; }
+        .slide-divider .div-part { font-size: clamp(0.8rem, 0.95vw, 0.9rem); font-weight: 600; color: var(--accent-primary); letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 1.2rem; }
+        .slide-divider .div-title { font-size: clamp(2.4rem, 4.5vw, 3.8rem); font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; max-width: 16ch; }
+        .slide-divider .div-rule { width: 64px; height: 4px; background: var(--accent-primary); border-radius: 2px; margin-top: 1.6rem; }
+        .slide-divider .div-sub { font-size: clamp(1rem, 1.2vw, 1.15rem); color: var(--text-muted); margin-top: 1.2rem; max-width: 50ch; }
+
+        /* callout strip (fills lower vertical space) */
+        .callout {
+            display: flex; align-items: center; gap: 0.8rem;
+            padding: 0.9rem 1.2rem; background: rgba(111,119,244,0.05);
+            border: 1px solid rgba(111,119,244,0.18); border-radius: 10px;
+            font-size: clamp(0.88rem, 1vw, 1rem); color: var(--text); line-height: 1.5;
+        }
+        .callout svg { width: 20px; height: 20px; color: var(--accent-primary); flex-shrink: 0; }
+        .callout .muted { color: var(--text-muted); }
+        .callout b { font-weight: 600; }
+
+        /* footnote — demoted callout, small centered line */
+        .footnote { font-size: clamp(0.76rem, 0.84vw, 0.84rem); color: var(--text-muted); line-height: 1.5; text-align: center; }
+        .footnote b { color: var(--text); font-weight: 600; }
+
+        /* recap closer — vertical tile column + 2-bullet column */
+        .recap-grid { display: grid; grid-template-columns: minmax(0, 33%) 1fr; column-gap: 1.8rem; width: 100%; border-bottom: 1px solid var(--border); }
+        .recap-tile, .recap-bullets { padding: 0.62rem 0; border-top: 1px solid var(--border); display: flex; align-items: center; }
+        .recap-tile { gap: 0.7rem; }
+        .recap-tile .rc-num { font-family: var(--mono); font-size: 0.8rem; font-weight: 700; color: #fff; background: var(--accent-primary); border-radius: 6px; min-width: 1.5rem; height: 1.5rem; padding: 0 0.4rem; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .recap-tile .rc-name { font-size: clamp(0.98rem, 1.08vw, 1.08rem); font-weight: 600; }
+        .recap-bullets { align-items: flex-start; flex-direction: column; gap: 0.2rem; list-style: none; margin: 0; }
+        .recap-bullets li { font-size: clamp(0.82rem, 0.9vw, 0.9rem); line-height: 1.4; color: var(--text-muted); position: relative; padding-left: 0.95rem; }
+        .recap-bullets li::before { content: ""; position: absolute; left: 0; top: 0.6em; width: 5px; height: 5px; border-radius: 50%; background: var(--accent-primary); }
+        .recap-bullets li b { color: var(--text); font-weight: 600; }
+
+        /* two-column split */
+        .split-2 { display: flex; gap: 3rem; align-items: center; width: 100%; }
+        .split-2 > .col-left { flex: 1 1 54%; min-width: 0; }
+        .split-2 > .col-right { flex: 1 1 42%; min-width: 0; }
+        .info-panel { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem 1.6rem; box-shadow: 0 4px 16px rgba(0,0,0,0.03); }
+        .info-panel h3 { font-size: clamp(1rem, 1.1vw, 1.1rem); font-weight: 600; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
+        .info-panel h3 svg { width: 18px; height: 18px; color: var(--accent-primary); }
+        .info-panel > p { font-size: clamp(0.85rem, 0.92vw, 0.92rem); color: var(--text-muted); line-height: 1.55; margin-bottom: 0.9rem; }
+        .info-panel ul.bullets li { font-size: clamp(0.82rem, 0.9vw, 0.9rem); }
+
+        /* divider agenda */
+        .agenda { margin-top: 2rem; display: flex; flex-direction: column; gap: 0.55rem; max-width: 520px; }
+        .agenda-item { display: flex; align-items: baseline; gap: 0.8rem; font-size: clamp(0.95rem, 1.1vw, 1.08rem); }
+        .agenda-item .ag-num { font-family: var(--mono); font-size: 0.78rem; color: var(--accent-primary); font-weight: 600; min-width: 2.2rem; }
+        .agenda-item .ag-title { color: var(--text); font-weight: 500; }
+        .agenda-item .ag-desc { color: var(--text-muted); font-size: 0.85em; }
+
+        /* evaluation table */
+        .eval-table { width: 100%; border-collapse: separate; border-spacing: 0; font-size: clamp(0.82rem, 0.9vw, 0.9rem); }
+        .eval-table thead { background: var(--card-bg); }
+        .eval-table th { text-align: left; padding: 0.85rem 1rem; font-weight: 600; color: var(--text); border-bottom: 2px solid var(--border); }
+        .eval-table th:last-child { border-right: 1px solid var(--border); }
+        .eval-table td { padding: 0.75rem 1rem; color: var(--text-muted); border-bottom: 1px solid var(--border); }
+        .eval-table tr:last-child td { border-bottom: none; }
+        .eval-table .weight-col { text-align: center; font-family: var(--mono); color: var(--accent-primary); font-weight: 600; }
+        .table-wrap { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; box-shadow: 0 4px 16px rgba(0,0,0,0.03); }
+
+        /* timeline flow */
+        .timeline-flow { display: flex; flex-direction: column; gap: 1.2rem; width: 100%; }
+        .timeline-item { display: flex; gap: 1.2rem; align-items: flex-start; }
+        .timeline-marker { flex: 0 0 auto; width: 32px; height: 32px; border-radius: 50%; background: var(--accent-primary); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 600; }
+        .timeline-content { flex: 1; }
+        .timeline-title { font-size: clamp(0.95rem, 1.05vw, 1.05rem); font-weight: 600; margin-bottom: 0.35rem; }
+        .timeline-desc { font-size: clamp(0.82rem, 0.9vw, 0.9rem); color: var(--text-muted); line-height: 1.5; }
+
+        /* ===== GETTING STARTED: compact numbered steps ===== */
+        .gs-steps { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; counter-reset: gs; width: 100%; max-width: 920px; }
+        .gs-steps li { counter-increment: gs; position: relative; padding-left: 2.5rem; font-size: clamp(0.88rem, 0.98vw, 0.98rem); line-height: 1.5; color: var(--text); }
+        .gs-steps li::before { content: counter(gs); position: absolute; left: 0; top: 0; width: 1.65rem; height: 1.65rem; border-radius: 50%; background: var(--accent-primary); color: #fff; font-size: 0.78rem; font-weight: 600; display: flex; align-items: center; justify-content: center; font-family: var(--mono); }
+        .gs-steps li b { font-weight: 600; }
+        .gs-steps code { font-family: var(--mono); font-size: 0.88em; background: var(--code-bg); padding: 0.05em 0.35em; border-radius: 4px; border: 1px solid var(--border); color: #2a2a33; }
+        .gs-steps .gs-note { color: var(--text-muted); }
+
+        /* ===== DENSE SLIDE: DELIVERABLES (compact horizontal tiles) ===== */
+        .deliv .grid { gap: 0.7rem 1rem; }
+        .deliv .info-card { flex-direction: row; align-items: flex-start; gap: 0.85rem; padding: 0.85rem 1rem; }
+        .deliv .info-card .ic-icon { width: 30px; height: 30px; margin-bottom: 0; border-radius: 8px; flex-shrink: 0; }
+        .deliv .info-card .ic-icon svg { width: 16px; height: 16px; }
+        .deliv .info-card .tile-body { min-width: 0; }
+        .deliv .info-card h3 { font-size: clamp(0.9rem, 1vw, 1rem); margin-bottom: 0.1rem; }
+        .deliv .info-card p { font-size: clamp(0.78rem, 0.85vw, 0.85rem); line-height: 1.45; }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .grid.cols-3 { grid-template-columns: repeat(2, 1fr); }
+            .grid.cols-4 { grid-template-columns: repeat(2, 1fr); }
+            .stepflow { flex-direction: column; }
+            .step-arrow { transform: rotate(90deg); padding: 0.3rem 0; }
+        }
+        @media (max-width: 768px) {
+            .slide-title .content { flex-direction: column; gap: 2rem; }
+            .slide-title .text-column { flex: none; max-width: 100%; }
+            .grid.cols-2, .grid.cols-3, .grid.cols-4 { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="slides-container">
+
+        <!-- ============================================
+             TITLE
+             ============================================ -->
+        <div class="slide slide-title active">
+            <div class="content">
+                <div class="text-column">
+                    <img class="intro-logo animate-1" src="images/retap logos/retap_logo_indigo.png" alt="retap.ai">
+                    <h1 class="intro-title animate-2">
+                        Build an Autonomous <span style="color: var(--accent-primary);">Knowledge Acquisition System</span>.
+                    </h1>
+                    <p class="intro-subtitle animate-3">
+                        A <strong>1-week assignment</strong> about breaking down a fuzzy problem, building with AI, and thinking in systems.
+                        <span class="muted">Build it inside Claude Code — we'll provide it.</span>
+                    </p>
+                </div>
+                <div class="visual-column animate-4">
+                    <div class="code-card" style="width: clamp(320px, 34vw, 440px);">
+                        <div class="cc-head">
+                            <span class="dotrow"><i></i><i></i><i></i></span>
+                            <span>the pipeline</span>
+                        </div>
+                        <pre class="code-block"><span class="c-key">Discover</span>   <span class="c-mute">→</span>  find new sources
+<span class="c-key">Extract</span>    <span class="c-mute">→</span>  pull out the facts
+<span class="c-key">Validate</span>   <span class="c-mute">→</span>  check against what exists
+<span class="c-key">Merge</span>      <span class="c-mute">→</span>  fold duplicates together
+<span class="c-key">Publish</span>    <span class="c-mute">→</span>  write OKF documents
+<span class="c-mute">            …and safe to re-run</span></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom-line"></div>
+            <div class="bottom-bar"><img src="images/retap logos/8.png" alt="retap.ai"></div>
+        </div>
+
+        <!-- ============================================
+             THE PROBLEM
+             ============================================ -->
+        <div class="slide">
+            <header class="header">
+                <p class="tag animate-1">The Problem</p>
+                <h1 class="title animate-2">Build a system that continuously acquires and maintains knowledge.</h1>
+                <p class="header-note animate-3">Not a static knowledge base — a dynamic knowledge acquisition system.</p>
+            </header>
+            <div class="content" style="flex-direction: column; gap: 2rem; align-items: stretch;">
+                <p class="lead animate-2">
+                    Imagine you run an Amazon Ads consulting company. Every week the landscape shifts:
+                    <span class="muted">Amazon ships new docs, APIs change, blogs post guides, repos and MCP servers appear.</span>
+                    You need <strong>one reliable source of truth</strong> that stays current and accurate.
+                </p>
+
+                <div class="stepflow animate-3">
+                    <div class="step-card">
+                        <div class="sc-num">1</div>
+                        <div class="sc-title">Discover</div>
+                        <div class="sc-desc">Find new information from multiple sources</div>
+                    </div>
+                    <div class="step-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+                    <div class="step-card">
+                        <div class="sc-num">2</div>
+                        <div class="sc-title">Extract</div>
+                        <div class="sc-desc">Pull out the key facts from each source</div>
+                    </div>
+                    <div class="step-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+                    <div class="step-card">
+                        <div class="sc-num">3</div>
+                        <div class="sc-title">Validate</div>
+                        <div class="sc-desc">Check it against what you already have</div>
+                    </div>
+                    <div class="step-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+                    <div class="step-card">
+                        <div class="sc-num">4</div>
+                        <div class="sc-title">Merge</div>
+                        <div class="sc-desc">Combine duplicates into one entry</div>
+                    </div>
+                    <div class="step-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+                    <div class="step-card">
+                        <div class="sc-num">5</div>
+                        <div class="sc-title">Publish</div>
+                        <div class="sc-desc">Save it as OKF documents</div>
+                    </div>
+                </div>
+
+                <div class="callout animate-4">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 18h6M10 22h4M12 2a7 7 0 00-4 12.7c.6.5 1 1.3 1 2.1V18h6v-1.2c0-.8.4-1.6 1-2.1A7 7 0 0012 2z"/></svg>
+                    <span>It must be safe to re-run: run it twice and you get the same result, with only the real changes applied. So you'll need to think about <b>what changed</b>, <b>what counts as the same topic</b>, and <b>where each fact came from</b>.</span>
+                </div>
+            </div>
+            <div class="bottom-line"></div>
+            <div class="bottom-bar"><img src="images/retap logos/8.png" alt="retap.ai"></div>
+            <div class="page-num">2</div>
+        </div>
+
+        <!-- ============================================
+             KEY REQUIREMENTS
+             ============================================ -->
+        <div class="slide">
+            <header class="header">
+                <p class="tag animate-1">Key Requirements</p>
+                <h1 class="title animate-2">Four critical constraints shape the solution.</h1>
+            </header>
+            <div class="content">
+                <div class="grid cols-2 animate-2">
+                    <div class="info-card">
+                        <div class="ic-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
+                        </div>
+                        <h3>OKF Storage Format</h3>
+                        <p>Store everything as Google's Open Knowledge Format &mdash; plain markdown with a bit of metadata at the top. It pushes you to decide what belongs in one document and how concepts connect.</p>
+                        <div class="ic-meta">Standard, portable, <b>readable by people and AI</b></div>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="ic-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+                        </div>
+                        <h3>Safe to Re-run</h3>
+                        <p>Running the pipeline twice must not duplicate anything. Spot what changed, update only the affected entries, leave the rest alone. So you'll think about what counts as the same item and how to detect updates.</p>
+                        <div class="ic-meta">No duplication on re-runs, <b>sources kept track of</b></div>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="ic-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        </div>
+                        <h3>Know Where Facts Come From</h3>
+                        <p>Every fact should trace back to its source. Track how sure you are, how many sources confirm it, whether it's official, and when it was last checked. This keeps AI-made-up content from becoming "fact".</p>
+                        <div class="ic-meta">Sources always recorded, <b>no unchecked AI output</b></div>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="ic-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+                        </div>
+                        <h3>Deduplicate & Merge</h3>
+                        <p>If 5 sources all describe "Sponsored Products," make ONE clear document that combines them &mdash; not 5 copies. When sources disagree, trust the official ones and note it.</p>
+                        <div class="ic-meta">One document per topic, <b>clear sources</b></div>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom-line"></div>
+            <div class="bottom-bar"><img src="images/retap logos/8.png" alt="retap.ai"></div>
+            <div class="page-num">3</div>
+        </div>
+
+        <!-- ============================================
+             TOOLS & APPROACH
+             ============================================ -->
+        <div class="slide">
+            <header class="header">
+                <p class="tag animate-1">Tools &amp; Approach</p>
+                <h1 class="title animate-2">Build it as a Claude Code project &mdash; no SDK, no new framework.</h1>
+                <p class="header-note animate-3">Your deliverable is a repo we can <code style="font-family: var(--mono); font-size: 0.92em; background: var(--code-bg); padding: 0.05em 0.35em; border-radius: 4px;">git clone</code> and run with <code style="font-family: var(--mono); font-size: 0.92em; background: var(--code-bg); padding: 0.05em 0.35em; border-radius: 4px;">claude</code>. Claude Code is both the tool you build <em>with</em> and the platform you build <em>on</em>.</p>
+            </header>
+            <div class="content">
+                <div class="split-2 animate-2">
+                    <div class="col-left">
+                        <p class="lead" style="margin-bottom: 0.85rem;">
+                            Compose, don't over-build. The native building blocks carry the whole pipeline:
+                        </p>
+                        <ul class="bullets" style="gap: 0.4rem;">
+                            <li><b>Pipeline roles</b> (Scout, Extractor, Validator&hellip;) become <b>subagents</b></li>
+                            <li><b>Formatting, dedup &amp; citation rules</b> become <b>skills</b></li>
+                            <li><b>"Validate before write"</b> becomes a <b>hook</b></li>
+                            <li><b>Scope &amp; behavior</b> live in <b>CLAUDE.md</b>; <b>output</b> is the OKF bundle</li>
+                        </ul>
+                        <div class="callout" style="margin-top: 0.85rem;">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            <span><b>One real choice: how much does code do vs. how much does Claude decide?</b> Fetch / parse / hash / validate / write are <b>deterministic</b> &mdash; code does them well and they're testable. What's a concept, extracting facts, merging disagreements are <b>fuzzy</b> &mdash; Claude's job. Pick the line and <b>explain it</b>.</span>
+                        </div>
+                    </div>
+                    <div class="col-right">
+                        <div class="code-card">
+                            <div class="cc-head">
+                                <span class="dotrow"><i></i><i></i><i></i></span>
+                                <span>your-system/</span>
+                            </div>
+                            <pre class="code-block"><span class="c-dir">your-system/</span>
+├── <span class="c-key">CLAUDE.md</span>          <span class="c-mute">← behavior &amp; scope</span>
+├── <span class="c-key">.claude/</span>
+│   ├── <span class="c-key">agents/</span>        <span class="c-mute">← roles as subagents</span>
+│   ├── <span class="c-key">skills/</span>        <span class="c-mute">← OKF, dedup, citations</span>
+│   └── <span class="c-key">settings.json</span>  <span class="c-mute">← hooks: validate first</span>
+├── <span class="c-key">scripts/</span>           <span class="c-mute">← helpers (optional)</span>
+└── <span class="c-key">knowledge/</span>         <span class="c-mute">← the OKF bundle</span></pre>
+                        </div>
+                        <div class="code-card" style="margin-top: 0.9rem;">
+                            <div class="cc-head">
+                                <span class="dotrow"><i></i><i></i><i></i></span>
+                                <span>run it</span>
+                            </div>
+                            <pre class="code-block"><span class="c-mute">$</span> <span class="c-str">claude</span> -p <span class="c-key">"ingest &lt;url&gt;, update the bundle"</span></pre>
+                        </div>
+                        <p style="font-size: clamp(0.74rem, 0.8vw, 0.8rem); color: var(--text-muted); margin-top: 0.9rem; line-height: 1.5;">
+                            <b style="color: var(--accent-secondary);">Tip:</b> native web search may be off on your plan &mdash; add an MCP (e.g. <b>Playwright</b> + a search MCP) so the agent can fetch sources. The brief has a starter kit.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom-line"></div>
+            <div class="bottom-bar"><img src="images/retap logos/8.png" alt="retap.ai"></div>
+            <div class="page-num">4</div>
+        </div>
+
+        <!-- ============================================
+             WHAT WE'RE EVALUATING
+             ============================================ -->
+        <div class="slide">
+            <header class="header">
+                <p class="tag animate-1">Evaluation Criteria</p>
+                <h1 class="title animate-2">We care how you think &mdash; not just how clean the code is.</h1>
+            </header>
+            <div class="content">
+                <div class="split-2 animate-2">
+                    <div class="col-left">
+                        <div class="table-wrap">
+                            <table class="eval-table">
+                                <thead>
+                                    <tr>
+                                        <th>Category</th>
+                                        <th class="weight-col">Weight</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Problem Decomposition</td>
+                                        <td class="weight-col">20%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Claude Code Usage</td>
+                                        <td class="weight-col">20%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Agent Architecture</td>
+                                        <td class="weight-col">20%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Code Quality</td>
+                                        <td class="weight-col">15%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Knowledge Quality</td>
+                                        <td class="weight-col">15%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Documentation</td>
+                                        <td class="weight-col">10%</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-right">
+                        <div class="info-panel">
+                            <h3>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                What We Look For
+                            </h3>
+                            <p>Things that stand out to us:</p>
+                            <ul class="bullets">
+                                <li>Breaking the problem into clear parts</li>
+                                <li>A real way to tell what changed</li>
+                                <li>Sources tracked for every fact</li>
+                                <li>Honest notes on what's missing</li>
+                                <li>Thoughtful use of Claude Code</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom-line"></div>
+            <div class="bottom-bar"><img src="images/retap logos/8.png" alt="retap.ai"></div>
+            <div class="page-num">5</div>
+        </div>
+
+        <!-- ============================================
+             DELIVERABLES
+             ============================================ -->
+        <div class="slide">
+            <header class="header">
+                <p class="tag animate-1">Deliverables</p>
+                <h1 class="title animate-2">Show your full process &mdash; not just working code.</h1>
+                <p class="header-note animate-3">We care about how you think it through. A production-ready system is not the goal.</p>
+            </header>
+            <div class="content deliv" style="flex-direction: column; gap: 1.1rem; align-items: stretch;">
+                <div class="grid cols-2 animate-2">
+                    <div class="info-card">
+                        <div class="ic-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+                        </div>
+                        <div class="tile-body">
+                            <h3>System &amp; Agent Architecture</h3>
+                            <p>High-level design, component &amp; subagent responsibilities, data flow, tech choices. <b>2-3 pages.</b></p>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="ic-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+                        </div>
+                        <div class="tile-body">
+                            <h3>Repository</h3>
+                            <p>Clean structure, README with setup, meaningful commits, tests. <b>Clone &amp; <code style="font-family: var(--mono); font-size: 0.92em;">claude</code> to run.</b></p>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="ic-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                        </div>
+                        <div class="tile-body">
+                            <h3>Working Pipeline</h3>
+                            <p>3+ source types end-to-end, safe to re-run without duplicating, errors handled.</p>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="ic-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+                        </div>
+                        <div class="tile-body">
+                            <h3>OKF Knowledge Bundle</h3>
+                            <p>10-15 concept docs, frontmatter, cross-links, index &amp; log. <b>Valid OKF v0.1.</b></p>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="ic-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                        </div>
+                        <div class="tile-body">
+                            <h3>Design Document</h3>
+                            <p>Tradeoffs &amp; why, what you'd improve, how you used Claude Code. <b>2-3 pages.</b></p>
+                        </div>
+                    </div>
+
+                    <div class="info-card" style="background: transparent; border: 1px dashed var(--border); box-shadow: none;">
+                        <div class="ic-icon" style="background: transparent;">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" style="color: var(--text-light);"><path d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+                        </div>
+                        <div class="tile-body">
+                            <h3 style="color: var(--text-muted);">No video needed</h3>
+                            <p style="color: var(--text-muted);">Skip the demo &mdash; we'll walk through it together in a follow-up call.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="callout animate-3">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    <span><b>If time runs short, prioritize in this order:</b> valid OKF output &rarr; safe-to-re-run &rarr; 2-3 sources &rarr; provenance. The minimum for "safe to re-run" is skip-if-unchanged; <b>real change detection and semantic merging are the differentiators for top marks</b> &mdash; aim for them.</span>
+                </div>
+            </div>
+            <div class="bottom-line"></div>
+            <div class="bottom-bar"><img src="images/retap logos/8.png" alt="retap.ai"></div>
+            <div class="page-num">6</div>
+        </div>
+
+        <!-- ============================================
+             TIMELINE
+             ============================================ -->
+        <div class="slide">
+            <header class="header">
+                <p class="tag animate-1">Timeline</p>
+                <h1 class="title animate-2">1 week to build the core system.</h1>
+                <p class="header-note animate-3">Access to Claude Code provided — focus on architecture and decisions, not boilerplate.</p>
+            </header>
+            <div class="content">
+                <div class="timeline-flow animate-2">
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1</div>
+                        <div class="timeline-content">
+                            <div class="timeline-title">Day 1-2 — Exploration & Architecture</div>
+                            <div class="timeline-desc">Understand OKF, explore Amazon Ads, design architecture, identify components, make tech choices.</div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-marker">2</div>
+                        <div class="timeline-content">
+                            <div class="timeline-title">Day 3-4 — Core Implementation</div>
+                            <div class="timeline-desc">Build ingestion for 2-3 source types, implement OKF generation, basic deduplication.</div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-marker">3</div>
+                        <div class="timeline-content">
+                            <div class="timeline-title">Day 5-6 — Re-runs & Polish</div>
+                            <div class="timeline-desc">Make it safe to re-run without duplicating, add source tracking, polish the code, write docs.</div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-marker">4</div>
+                        <div class="timeline-content">
+                            <div class="timeline-title">Day 7 — Polish &amp; Submission</div>
+                            <div class="timeline-desc">Finish the design document, final review, submit. No demo video &mdash; we'll walk through it together.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="callout animate-3" style="margin-top: 2rem;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    <span>Timeline is flexible &mdash; quality beats speed. We care about <b>how you think it through</b>, not how fast you ship. Use Claude Code to move faster; we want to see <b>how you put it to work</b>.</span>
+                </div>
+            </div>
+            <div class="bottom-line"></div>
+            <div class="bottom-bar"><img src="images/retap logos/8.png" alt="retap.ai"></div>
+            <div class="page-num">7</div>
+        </div>
+
+        <!-- ============================================
+             SUCCESS CRITERIA
+             ============================================ -->
+        <div class="slide">
+            <header class="header">
+                <p class="tag animate-1">Success Criteria</p>
+                <h1 class="title animate-2">What "good" looks like.</h1>
+            </header>
+            <div class="content">
+                <div class="split-2 animate-2">
+                    <div class="col-left">
+                        <div class="info-panel">
+                            <h3>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                We're Hoping to See
+                            </h3>
+                            <ul class="bullets">
+                                <li>A working system reading from 3+ sources</li>
+                                <li>Valid OKF output (10-15 documents)</li>
+                                <li>Clear notes on your architecture</li>
+                                <li>Proof it doesn't duplicate on re-runs</li>
+                                <li>Honest notes on what's missing</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-right">
+                        <div class="info-panel" style="border-color: rgba(111,119,244,0.3); background: rgba(111,119,244,0.03);">
+                            <h3>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                You Don't Need
+                            </h3>
+                            <ul class="bullets">
+                                <li>Production-ready code</li>
+                                <li>Every edge case handled</li>
+                                <li>Every Amazon Ads feature covered</li>
+                                <li>A polished UI (a CLI is fine)</li>
+                                <li>Every possible source type supported</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom-line"></div>
+            <div class="bottom-bar"><img src="images/retap logos/8.png" alt="retap.ai"></div>
+            <div class="page-num">8</div>
+        </div>
+
+        <!-- ============================================
+             WHY THIS WORKS
+             ============================================ -->
+        <div class="slide">
+            <header class="header">
+                <p class="tag animate-1">Why This Assignment</p>
+                <h1 class="title animate-2">It's about engineering judgment, not just writing code.</h1>
+            </header>
+            <div class="content" style="flex-direction: column; gap: 2rem; align-items: stretch;">
+                <div class="grid cols-3 animate-2">
+                    <div class="info-card">
+                        <div class="ic-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+                        </div>
+                        <h3>A Real Problem</h3>
+                        <p>Keeping knowledge current is a genuine, open-ended challenge &mdash; not a toy exercise with one right answer.</p>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="ic-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                        </div>
+                        <h3>Your Judgment</h3>
+                        <p>There's no single correct design. Several architectures work &mdash; we want to see how you choose and why.</p>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="ic-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+                        </div>
+                        <h3>Working With AI</h3>
+                        <p>You'll use Claude Code. We want to see you steer it, check its work, and not just hand it the whole task.</p>
+                    </div>
+                </div>
+
+                <div class="callout animate-3">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 18h6M10 22h4M12 2a7 7 0 00-4 12.7c.6.5 1 1.3 1 2.1V18h6v-1.2c0-.8.4-1.6 1-2.1A7 7 0 0012 2z"/></svg>
+                    <span>Strong engineers <strong>break fuzzy problems into clear parts</strong>, <strong>use AI as a tool without leaning on it</strong>, <strong>make sensible tradeoffs</strong>, <strong>think about the long term</strong>, and <strong>explain their thinking</strong>. That's what we're looking for.</span>
+                </div>
+            </div>
+            <div class="bottom-line"></div>
+            <div class="bottom-bar"><img src="images/retap logos/8.png" alt="retap.ai"></div>
+            <div class="page-num">9</div>
+        </div>
+
+        <!-- ============================================
+             GETTING STARTED
+             ============================================ -->
+        <div class="slide">
+            <header class="header">
+                <p class="tag animate-1">Getting Started</p>
+                <h1 class="title animate-2">From zero to your first run.</h1>
+                <p class="header-note animate-3">Roughly 30 minutes to get you started. If a command differs on your machine, skim the official docs &mdash; don't get stuck here.</p>
+            </header>
+            <div class="content">
+                <ol class="gs-steps animate-2">
+                    <li><b>Get a terminal &amp; Node.js 18+.</b> Windows: run <code>wsl --install</code> in PowerShell (reboot), then use Ubuntu. macOS/Linux: you're set. <span class="gs-note">Make sure <code>node --version</code> is 18 or higher.</span></li>
+                    <li><b>Install Claude Code.</b> <code>npm i -g @anthropic-ai/claude-code</code>, then run <code>claude</code> and sign in with the access we provide.</li>
+                    <li><b>Add MCPs for web access.</b> <code>claude mcp add playwright npx @playwright/mcp@latest</code> (fetches JS pages), then add a search MCP &mdash; Tavily or Brave (grab a free key).</li>
+                    <li><b>(Optional) format normalizer.</b> <code>pip install markitdown</code> &mdash; turns PDF / docx / HTML into markdown so you don't hand-parse each.</li>
+                    <li><b>Scaffold the project &amp; git.</b> Make a folder &mdash; e.g. <code>amazon-ads-kb</code> &mdash; <code>git init</code> it, then add <code>CLAUDE.md</code> and a <code>.claude/</code> directory (e.g. <code>agents/</code>, <code>skills/</code>, <code>settings.json</code>).</li>
+                    <li><b>Smoke-test the loop.</b> <code>claude -p "fetch &lt;an Amazon Ads URL&gt; and summarize it"</code> &mdash; prove fetch &rarr; read works end to end, then commit. Shaping that into proper OKF concepts is the assignment ahead.</li>
+                </ol>
+            </div>
+            <div class="bottom-line"></div>
+            <div class="bottom-bar"><img src="images/retap logos/8.png" alt="retap.ai"></div>
+            <div class="page-num">10</div>
+        </div>
+
+    </div>
+
+    <!-- Navigation -->
+    <div class="slide-dots"></div>
+    <div class="page-num"></div>
+
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        const dotsContainer = document.querySelector('.slide-dots');
+        const pageEl = document.querySelector('.page-num');
+        let currentSlide = 0;
+        let dots = [];
+
+        slides.forEach((_, i) => {
+            const d = document.createElement('div');
+            d.className = 'dot' + (i === 0 ? ' active' : '');
+            d.dataset.slide = i;
+            d.addEventListener('click', () => goToSlide(i));
+            dotsContainer.appendChild(d);
+        });
+        dots = Array.from(document.querySelectorAll('.dot'));
+
+        function setPage() {
+            pageEl.textContent = String(currentSlide + 1).padStart(2, '0') + ' / ' + String(slides.length).padStart(2, '0');
+        }
+
+        function goToSlide(index) {
+            if (index < 0 || index >= slides.length) return;
+            slides[currentSlide].classList.remove('active');
+            dots[currentSlide].classList.remove('active');
+            currentSlide = index;
+            slides[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+            setPage();
+        }
+        setPage();
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); goToSlide(currentSlide + 1); }
+            else if (e.key === 'ArrowLeft') { goToSlide(currentSlide - 1); }
+        });
+    </script>
+</body>
+</html>

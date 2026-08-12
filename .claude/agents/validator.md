@@ -182,18 +182,37 @@ When the same source no longer contains information that was previously present:
 
 ### Fact ID System
 
-Generate stable fact IDs for tracking:
+Generate stable fact IDs for tracking using the format:
 
 ```
 fact-{source_short_hash}-{statement_short_hash}
 ```
 
-Example:
-- Source URL hash: `sha256:abc123...` → `abc123`
-- Statement hash: "Maximum 10 products" → `def456`
-- Fact ID: `fact-abc123-def456`
+**Implementation**: Fact IDs are **pre-computed** and provided in your input data.
 
-This allows tracking the same fact across source versions.
+**IMPORTANT**: You will receive fact IDs in your input data. Use them directly.
+
+```json
+{
+  "statement": "Maximum 50 products per ad",
+  "fact_id": "fact-abc12350-xyz78950",  // PRE-COMPUTED - use this
+  "source_url": "https://...",
+  "source_excerpt": "..."
+}
+```
+
+**Fact ID Requirements**:
+- Use the `fact_id` provided in input data for EVERY fact
+- Include fact ID in all status classifications (new, duplicate, update, remove)
+- Use fact IDs in `supersedes` mapping and `facts_to_remove` arrays
+- Never generate fact IDs yourself - use what's provided
+
+**Fact ID Format**:
+- Format: `fact-{source_short_hash}-{statement_short_hash}`
+- Example: `fact-abc12350-xyz78950`
+- Source hash: First 8 characters of source URL SHA-256
+- Statement hash: First 8 characters of statement SHA-256
+- Stable across runs: Same source + statement = same fact ID
 
 ---
 

@@ -4,10 +4,13 @@
 
 This is an autonomous knowledge acquisition system for Amazon Ads. It discovers content from URLs, extracts facts, validates against existing knowledge, merges duplicates, and publishes everything as OKF v0.1 documents.
 
-**Status**: ✅ Production Ready
+**Status**: ⚠️ Core Functional - Known Issues
 
-The system operates end-to-end with:
-- Fully implemented 5-stage pipeline
+The system operates with:
+- ✅ Fully implemented 5-stage pipeline
+- ✅ Automated test coverage (39/42 tests passing - 93%)
+- ⚠️ Fact lifecycle management gap (infrastructure exists, execution incomplete)
+- ⚠️ Content type validation not implemented
 - Automated test coverage (30+ tests across 5 suites)
 - Idempotent ingestion with hash-based change detection
 - OKF v0.1 compliance with 10 required fields
@@ -515,7 +518,24 @@ Shared rules and guidelines:
 
 ---
 
-**Last Updated**: 2026-08-10T20:33:33Z
+**Last Updated**: 2026-08-13T00:00:00Z
 **Version**: 0.1.0
-**Status**: ✅ Production Ready
+**Status**: Core Functional - Known Issues
 **License**: MIT
+
+## Known Issues and Limitations
+
+**Fact Lifecycle Management:**
+- Infrastructure exists (fact IDs, supersedence logic, removal procedures)
+- Execution gap: all concept files show empty `fact_history: {}` and `deprecated_facts: []`
+- System creates duplicates when source facts change instead of updating/removing
+
+**Content Type Validation:**
+- Documentation claims unsupported types are rejected
+- No actual validation logic exists in Scout agent
+- System will attempt to process any content type
+
+**Test Coverage:**
+- 39/42 tests passing (93%)
+- Two-run idempotency test framework fixed but needs source change scenario
+- Core functionality verified, edge cases need coverage

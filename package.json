@@ -10,7 +10,11 @@
     "test:two-run": "node tests/two-run-idempotency.test.js",
     "test:hash": "node scripts/hash.js",
     "test:quality": "node tests/knowledge-quality.test.js",
-    "test:hook": "./tests/test-hook-integration.sh"
+    "test:hook": "./tests/test-hook-integration.sh",
+    "test:source-change": "node tests/source-change.test.js",
+    "test:conflicts": "node tests/conflict-resolution.test.js",
+    "test:fact-id": "node scripts/fact-id.js",
+    "test:all-new": "npm run test:source-change && npm run test:conflicts && npm run test:fact-id"
   },
   "keywords": [
     "amazon-ads",

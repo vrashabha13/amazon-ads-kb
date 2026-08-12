@@ -144,3 +144,16 @@ If content is unclear or seems corrupted:
   "warnings": ["Some sections were unclear"]
 }
 ```
+
+## Validation Guidance
+
+**Frontmatter Completeness**:
+- Ensure all extracted facts include information needed for required OKF frontmatter fields
+- Pay attention to data needed for: `type`, `title`, `description`, `resource`, `tags`, `timestamp`, `confidence`, `sources_count`, `official_source`, `last_checked`
+- If critical information is missing from source content, flag this in warnings
+
+**Quality Checks**:
+- Verify source URLs are valid and complete
+- Ensure confidence levels are appropriately assigned
+- Check that source excerpts accurately support the extracted facts
+- Flag documents that may have incomplete frontmatter for Publisher attention

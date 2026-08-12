@@ -14,6 +14,8 @@ sources_count: 1
 official_source: true
 last_checked: 2026-08-12T17:57:30Z
 timestamp: 2026-08-12T17:57:30Z
+fact_history: {}
+deprecated_facts: []
 ---
 
 # Display Ads Basics (formerly Sponsored Display)
@@ -26,25 +28,25 @@ Display Ads is a flexible advertising format that helps brands reach relevant au
 
 ## Facts
 
-1. **🚨 Product Renamed**: Sponsored Display has been officially renamed to Display Ads as part of Amazon's unified advertising platform strategy announced in 2026.
+1. **🚨 Product Renamed** [fact-28203088-de670911]: Sponsored Display has been officially renamed to Display Ads as part of Amazon's unified advertising platform strategy announced in 2026.
 
-2. **Unified Platform Integration**: Display Ads integrated into centralized management center that combines search advertising with Amazon DSP workflows on single platform, simplifying operations while maintaining all powerful advertising functionality.
+2. **Unified Platform Integration** [fact-28203088-36f27d5f]: Display Ads integrated into centralized management center that combines search advertising with Amazon DSP workflows on single platform, simplifying operations while maintaining all powerful advertising functionality.
 
-3. **Multi-Channel Reach**: Display Ads can reach audiences across Amazon properties including Twitch, Fire TV, and Echo Show, as well as premium placements on the open internet.
+3. **Multi-Channel Reach** [fact-28203088-b9be7d52]: Display Ads can reach audiences across Amazon properties including Twitch, Fire TV, and Echo Show, as well as premium placements on the open internet.
 
-4. **Creative Options**: Support for both Amazon-generated creative assets and custom creative assets gives advertisers flexibility in ad presentation.
+4. **Creative Options** [fact-28203088-b02fadaf]: Support for both Amazon-generated creative assets and custom creative assets gives advertisers flexibility in ad presentation.
 
-5. **Campaign Continuity**: Existing Sponsored Display campaigns continue uninterrupted and remain accessible through Campaign Manager in the advertising platform.
+5. **Campaign Continuity** [fact-28203088-6cc0d2d7]: Existing Sponsored Display campaigns continue uninterrupted and remain accessible through Campaign Manager in the advertising platform.
 
-6. **New Campaign Workflow**: To create new Display Ad campaigns, navigate to Campaigns → Create Campaign → Display (replacing previous Sponsored Display workflow).
+6. **New Campaign Workflow** [fact-28203088-454e16c5]: To create new Display Ad campaigns, navigate to Campaigns → Create Campaign → Display (replacing previous Sponsored Display workflow).
 
-7. **Enhanced Functionality**: Unified platform maintains sophisticated audience targeting based on shopping behaviors, product views, purchase history, lifestyle interests, and demographic attributes.
+7. **Enhanced Functionality** [fact-28203088-c26aeb99]: Unified platform maintains sophisticated audience targeting based on shopping behaviors, product views, purchase history, lifestyle interests, and demographic attributes.
 
-8. **Cross-Platform Integration**: Integration combines functionality previously managed separately by Amazon DSP and advertising platform for cohesive campaign management.
+8. **Cross-Platform Integration** [fact-28203088-984c969e]: Integration combines functionality previously managed separately by Amazon DSP and advertising platform for cohesive campaign management.
 
-9. **Retargeting Capabilities**: Display Ads maintains strong retargeting capabilities, allowing advertisers to re-engage customers who viewed their products or visited category pages.
+9. **Retargeting Capabilities** [fact-28203088-86f68a70]: Display Ads maintains strong retargeting capabilities, allowing advertisers to re-engage customers who viewed their products or visited category pages.
 
-10. **Pricing Models**: Continues to offer cost-per-click (CPC) and cost-per-thousand impressions (vCPM) pricing models for campaign flexibility.
+10. **Pricing Models** [fact-28203088-5ae85b4a]: Continues to offer cost-per-click (CPC) and cost-per-thousand impressions (vCPM) pricing models for campaign flexibility.
 
 ## Sources
 

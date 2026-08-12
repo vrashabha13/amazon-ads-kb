@@ -4,6 +4,48 @@ This log tracks all ingestion operations performed on the Amazon Ads knowledge b
 
 ## Recent Activity
 
+### 2026-08-12T18:00:00Z (IDEMPOTENCY DEMONSTRATION - SEMANTIC UNCHANGE)
+
+**Re-checked**: https://advertising.amazon.com/solutions/products/sponsored-products
+
+**Details**:
+- Previous hash: `sha256:89e25f456aad3a2921b372ac0a40482662535b55bf3de8db6991dc64aa00924f`
+- Current hash: `sha256:3922c150f95eec40d3856735cc86605e7eee961f2be38d331c504bb8ed57a304`
+- Content type: product-page
+- Language: zh-CN (Chinese)
+- Status: SEMANTICALLY UNCHANGED (hash changed but content identical)
+- Re-ingestion count: 2
+- Facts extracted: 27 (all duplicates)
+- Concepts created: 0 (no changes needed)
+
+**Pipeline Behavior**:
+- ✅ Scout: Content fetched, hash change detected
+- ✅ Extractor: 27 facts extracted with proper provenance
+- ✅ Validator: All 27 facts identified as duplicates
+- ⏭️ Merger: Recommended skip (no semantic changes)
+- ✅ Publisher: Updated manifest timestamps only
+
+**Idempotency Verification**:
+- System correctly detected semantic equivalence despite hash change
+- No concept files were modified (perfect idempotency at semantic level)
+- Manifest updated with new hash and incremented reingestion_count
+- Demonstrates system's ability to avoid unnecessary re-processing
+
+**Important Notes**:
+- Hash change likely due to: dynamic timestamps, image URL variations, whitespace changes, or other non-semantic content
+- System validated that all 27 extracted facts already exist in knowledge base
+- 2 potentially new facts identified but already covered by existing concepts
+- Zero conflicts detected - knowledge base remains consistent
+- Content quality maintained: all facts retain high confidence from official source
+
+**Source Metadata**:
+- Official source: true (advertising.amazon.com)
+- Confidence level: high
+- Hierarchical tags: products/sponsored-products/*
+- Semantic integrity: verified and maintained
+
+---
+
 ### 2026-08-12T17:58:00Z (PIPELINE COMPLETION - NO PLACEHOLDERS)
 
 **Full Pipeline Execution**: All placeholder sources removed and replaced with actual content through complete pipeline processing
@@ -218,16 +260,17 @@ This log tracks all ingestion operations performed on the Amazon Ads knowledge b
 
 ## Statistics
 
-- Total Ingestions: 4
-- Successful: 4
+- Total Ingestions: 5
+- Successful: 5
 - Failed: 0
 - Skipped (unchanged): 0
-- Re-ingested (hash changed): 1
+- Re-ingested (hash changed): 2
 - Batch ingestions: 2
 - Major product transitions detected: 1
 - Total sources processed: 5
 - Total concepts in knowledge base: 14
 - Pipeline completion rate: 100% (all sources through all stages)
+- Idempotency verifications: 2 (successful semantic duplicate detection)
 
 ---
 

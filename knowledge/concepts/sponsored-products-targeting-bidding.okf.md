@@ -11,6 +11,8 @@ sources_count: 1
 official_source: true
 last_checked: 2026-08-10T20:26:36Z
 timestamp: 2026-08-10T20:26:36Z
+fact_history: {}
+deprecated_facts: []
 ---
 
 # Sponsored Products Targeting and Bidding
@@ -21,17 +23,17 @@ Sponsored Products offers flexible targeting options including manual keyword/pr
 
 ## Facts
 
-1. **Targeting Methods**: Advertisers can manually select products to promote and keywords to target, or delegate to Amazon's automatic targeting system for relevant keywords.
+1. **Targeting Methods** [fact-b9738cb0-fcd0aacc]: Advertisers can manually select products to promote and keywords to target, or delegate to Amazon's automatic targeting system for relevant keywords.
 
-2. **Keyword and Product Targeting**: Campaigns support both keyword targeting and product targeting options, allowing flexibility in reaching relevant audiences.
+2. **Keyword and Product Targeting** [fact-b9738cb0-66b1983c]: Campaigns support both keyword targeting and product targeting options, allowing flexibility in reaching relevant audiences.
 
-3. **Recommended Strategies**: Advertisers can apply recommended strategies to reach the right customers at the right time.
+3. **Recommended Strategies** [fact-b9738cb0-361ef0e6]: Advertisers can apply recommended strategies to reach the right customers at the right time.
 
-4. **Bid Definition**: When creating campaigns, advertisers input bids for keywords they want to target. The bid represents the maximum amount willing to pay per customer click.
+4. **Bid Definition** [fact-b9738cb0-52581b67]: When creating campaigns, advertisers input bids for keywords they want to target. The bid represents the maximum amount willing to pay per customer click.
 
-5. **Bid Control**: Advertisers maintain full control over bid amounts and can adjust them based on campaign performance and budget.
+5. **Bid Control** [fact-b9738cb0-5dbc98d7]: Advertisers maintain full control over bid amounts and can adjust them based on campaign performance and budget.
 
-6. **Flexible Optimization**: Campaigns can be optimized using actionable advertising performance reports and insights.
+6. **Flexible Optimization** [fact-b9738cb0-839aa4a3]: Campaigns can be optimized using actionable advertising performance reports and insights.
 
 ## Sources
 
